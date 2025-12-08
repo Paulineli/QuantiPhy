@@ -6,7 +6,7 @@
         content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
   <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>QUANTIPHY: A Quantitative Benchmark Evaluating Physical Reasoning Abilities of Vision-Language Models</title>
+  <title>QuantiPhy: A Quantitative Benchmark Evaluating Physical Reasoning Abilities of Vision-Language Models</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -42,6 +42,7 @@
 </head>
 <body>
 
+<!-- Navigation bar commented out
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
@@ -81,14 +82,22 @@
 
   </div>
 </nav>
+-->
 
+<!-- QuantiPhy Teaser Image -->
+<section class="hero teaser" style="padding-top: 0;">
+  <div class="hero-body" style="padding: 0;">
+    <img src="./static/images/teaser.png" alt="QuantiPhy Teaser" style="width: 100%; display: block;">
+  </div>
+</section>
 
+<!-- QuantiPhy Title and Authors -->
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">QUANTIPHY: A Quantitative Benchmark Evaluating Physical Reasoning Abilities of Vision-Language Models</h1>
+          <h1 class="title is-1 publication-title"><span class="quantiphy">QuantiPhy:</span> A Quantitative Benchmark Evaluating Physical Reasoning Abilities of Vision-Language Models</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               Li Puyin<sup>1</sup>*,</span>
@@ -97,6 +106,7 @@
             <span class="author-block">
               Ella Mao<sup>1</sup>,
             </span>
+            <br>
             <span class="author-block">
               Shirley Wei<sup>1</sup>,
             </span>
@@ -106,6 +116,7 @@
             <span class="author-block">
               Adnan Masood<sup>2</sup>,
             </span>
+            <br>
             <span class="author-block">
               Li Fei-fei<sup>1</sup>†,
             </span>
@@ -178,6 +189,7 @@
   </div>
 </section>
 
+<!-- Old teaser commented out
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
@@ -193,6 +205,7 @@
     </div>
   </div>
 </section>
+-->
 
 
 <section class="hero is-light is-small">
@@ -261,31 +274,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
-          </p>
-          <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
-          </p>
-          <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
+            Understanding the physical world is essential for generalist AI agents. However, it remains unclear whether state-of-the-art vision perception models (e.g., large VLMs) can reason physical properties quantitatively. Existing evaluations are predominantly VQA-based and qualitative, offering limited insight into whether these models can infer the kinematic quantities of moving objects from video observations. To address this, we present <span class="quantiphy" style="font-family: 'Times New Roman', Times, serif; font-weight: bold;">Quantiphy</span>, the first benchmark designed to quantitatively measure a VLM's physical reasoning ability. Comprising more than 3.3K video–text instances with numerical ground truth, <span class="quantiphy" style="font-family: 'Times New Roman', Times, serif; font-weight: bold;">Quantiphy</span> evaluates a VLM's performance on estimating an object's size, velocity, and acceleration at a given timestamp, using one of these properties as an input prior. The benchmark standardizes prompts and scoring to assess numerical accuracy, enabling fair comparisons across models. Our experiments on state-of-the-art VLMs reveal a consistent gap between their qualitative plausibility and actual numerical correctness. We further provide an in-depth analysis of key factors like background noise, counterfactual priors, and strategic prompting and find that state-of-the-art VLMs lean heavily on pre-trained world knowledge rather than faithfully using the provided visual and textual inputs as references when reasoning kinematic properties quantitatively. <span class="quantiphy" style="font-family: 'Times New Roman', Times, serif; font-weight: bold;">Quantiphy</span> offers the first rigorous, scalable testbed to move VLMs beyond mere verbal plausibility toward a numerically grounded physical understanding.
           </p>
         </div>
       </div>

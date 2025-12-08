@@ -1,5 +1,5 @@
 body {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Castoro', Georgia, 'Times New Roman', serif;
 }
 
 
@@ -17,6 +17,12 @@ body {
   font-variant: small-caps;
 }
 
+.quantiphy {
+  font-family: 'Castoro', Georgia, 'Times New Roman', serif;
+  font-weight: bold !important;
+  font-style: italic;
+}
+
 
 .teaser .hero-body {
   padding-top: 0;
@@ -24,7 +30,7 @@ body {
 }
 
 .teaser {
-  font-family: 'Google Sans', sans-serif;
+  font-family: 'Castoro', Georgia, 'Times New Roman', serif;
 }
 
 
@@ -48,11 +54,11 @@ body {
 }
 
 .publication-title {
-    font-family: 'Google Sans', sans-serif;
+    font-family: 'Castoro', Georgia, 'Times New Roman', serif;
 }
 
 .publication-authors {
-    font-family: 'Google Sans', sans-serif;
+    font-family: 'Castoro', Georgia, 'Times New Roman', serif;
 }
 
 .publication-venue {
