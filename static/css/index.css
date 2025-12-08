@@ -161,3 +161,121 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
+/* Video Q&A Section Styles */
+.video-qa-section {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.video-container {
+  position: relative;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  margin-bottom: 270px;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.preview-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  clear: both;
+}
+
+.video-qa {
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.preview {
+  cursor: pointer;
+  transition: opacity 0.2s, box-shadow 0.2s;
+  opacity: 0.5;
+  height: 50px;
+  width: auto;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+div .preview-video-active,
+.preview:hover {
+  opacity: 1.0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.video-label {
+  display: none;
+}
+
+.speed-reminder {
+  display: none;
+}
+
+.click-hint {
+  display: block;
+  margin: auto;
+  width: 60%;
+  font-size: 15px;
+  color: white;
+  background-color: rgb(224, 179, 110);
+  border: 2px solid rgb(224, 179, 110);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(224, 179, 110, 0.3);
+  text-align: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.click-hint strong {
+  color: white;
+}
+
+.l-body {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .video-container {
+    margin-bottom: 20px;
+    overflow-y: scroll;
+    max-height: 90vh;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+  }
+
+  .video-container::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .video-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+
+  .video-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+}

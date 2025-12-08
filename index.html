@@ -39,6 +39,7 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script src="./static/js/switch_videos.js"></script>
 </head>
 <body>
 
@@ -104,7 +105,7 @@
             <span class="author-block">
               Tiange Xiang<sup>1</sup>*,</span>
             <span class="author-block">
-              Ella Mao<sup>1</sup>,
+              Ella Mao<sup>1</sup>*,
             </span>
             <br>
             <span class="author-block">
@@ -116,7 +117,6 @@
             <span class="author-block">
               Adnan Masood<sup>2</sup>,
             </span>
-            <br>
             <span class="author-block">
               Li Fei-fei<sup>1</sup>†,
             </span>
@@ -207,7 +207,244 @@
 </section>
 -->
 
+<!-- Interactive Video Q&A Section -->
+<section class="section" style="padding-top: 1rem; padding-bottom: 1rem; background-color: rgb(251, 239, 222);">
+  <div class="container" style="max-width: 1100px;">
+    <p style="text-align: center; font-weight: bold; margin-top: 10px; margin-bottom: 10px; font-size: 2em;">
+      Compare your physical reasoning abilities with ChatGPT-5.1!
+    </p>
 
+    <div class="l-body">
+      <!-- Preview Images in a Flex Container -->
+      <div class="preview-container">
+        <img id="Touristvideo2Preview" class="preview" src="./static/images/cropped_thumbnails/billiard.png" alt="video-thumbnail" onclick="switchVideo('Tourist','video2Container', 'video2Preview')">
+        <img id="Touristvideo3Preview" class="preview" src="./static/images/cropped_thumbnails/elephant.png" alt="video-thumbnail" onclick="switchVideo('Tourist', 'video3Container', 'video3Preview')">
+        <img id="Touristvideo4Preview" class="preview" src="./static/images/cropped_thumbnails/woman.png" alt="video-thumbnail" onclick="switchVideo('Tourist', 'video4Container', 'video4Preview')">
+        <img id="Touristvideo6Preview" class="preview" src="./static/images/cropped_thumbnails/pingpong_1.png" alt="video-thumbnail" onclick="switchVideo('Tourist','video6Container', 'video6Preview')">
+        <img id="Touristvideo7Preview" class="preview" src="./static/images/cropped_thumbnails/pingpong_2.png" alt="video-thumbnail" onclick="switchVideo('Tourist', 'video7Container', 'video7Preview')">
+        <img id="Touristvideo8Preview" class="preview" src="./static/images/cropped_thumbnails/museum.png" alt="video-thumbnail" onclick="switchVideo('Tourist','video8Container', 'video8Preview')">
+        <img id="Touristvideo9Preview" class="preview" src="./static/images/cropped_thumbnails/cabin.png" alt="video-thumbnail" onclick="switchVideo('Tourist','video9Container', 'video9Preview')">
+      </div>
+
+      <!-- Video 1 -->
+      <div id="Touristvideo2Container" class="video-container">
+        <div class="video-label">Object Count</div>
+        <video class="video-music" controls preload="metadata" playsinline>
+          <source src="./static/videos/2D_sample3_internet.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="video-qa">
+          <div class="qa-item">
+            <p><strong>Prior Knowledge:</strong> The diameter of the billiard balls is 57.4 mm. </p>
+            <p><strong>Question:</strong> What is the velocity of the orange ball at 1.00s in cm/s?</p>
+            <div id="answer-2" style="display:none; text-align: center; margin-top: 20px;">
+              <div style="display: flex; justify-content: center; align-items: center; gap: 20px; white-space: nowrap;">
+                <p><strong style="color: rgb(97,124,90);">Ground Truth:</strong> 24.99</p>
+                <p><strong style="color: rgb(185,87,59);">ChatGPT-5.1:</strong> 0.00</p>
+              </div>
+            </div>
+            <p class="click-hint" style="width:85%; cursor:pointer; margin-top: 20px;" onclick="toggleAnswer('answer-2', this)">
+              <img src="./static/images/icons/teaser.gif" style="width:1.5rem">
+              <strong>Click to view Ground Truth and ChatGPT-5.1's answer!</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video 2 -->
+      <div id="Touristvideo3Container" class="video-container" style="display:none;">
+        <div class="video-label">Object Count</div>
+        <video class="video-music" controls preload="metadata" playsinline>
+          <source src="./static/videos/2D_sample1_simulation.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="video-qa">
+          <div class="qa-item">
+            <p><strong>Prior Knowledge:</strong> The woman's walking speed is 1.25 m/s. </p>
+            <p><strong>Question:</strong> What is the distance between the two black road signs in meters?</p>
+            <div id="answer-3" style="display:none; text-align: center; margin-top: 20px;">
+              <div style="display: flex; justify-content: center; align-items: center; gap: 20px; white-space: nowrap;">
+                <p><strong style="color: rgb(97,124,90);">Ground Truth:</strong> 4.77</p>
+                <p><strong style="color: rgb(185,87,59);">ChatGPT-5.1:</strong> 0.00</p>
+              </div>
+            </div>
+            <p class="click-hint" style="width:85%; cursor:pointer; margin-top: 20px;" onclick="toggleAnswer('answer-3', this)">
+              <img src="./static/images/icons/teaser.gif" style="width:1.5rem">
+              <strong>Click to view Ground Truth and ChatGPT-5.1's answer!</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video 3 -->
+      <div id="Touristvideo4Container" class="video-container" style="display:none;">
+        <div class="video-label">Object Size</div>
+        <video class="video-music" controls preload="metadata" playsinline>
+          <source src="./static/videos/2D_sample2_internet.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="video-qa">
+          <div class="qa-item">
+            <p><strong>Prior Knowledge:</strong> The woman's walking speed is 1.25 m/s. </p>
+            <p><strong>Question:</strong> What is the distance between the two black road signs in meters?</p>
+            <div id="answer-4" style="display:none; text-align: center;">
+              <div style="display: flex; justify-content: center; align-items: center; gap: 20px; white-space: nowrap;">
+                <p><strong style="color: rgb(97,124,90);">Ground Truth:</strong> 4.77</p>
+                <p><strong style="color: rgb(185,87,59);">ChatGPT-5.1:</strong> 0.00</p>
+              </div>
+            </div>
+            <div style="margin-top: 20px; text-align: center;">
+              <p class="click-hint" style="width:85%; cursor:pointer;" onclick="toggleAnswer('answer-4', this)">
+                <img src="./static/images/icons/teaser.gif" style="width:1.5rem">
+                <strong>Click to view Ground Truth and ChatGPT-5.1's answer!</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video 4 -->
+      <div id="Touristvideo6Container" class="video-container" style="display:none;">
+        <div class="video-label">Relative Distance</div>
+        <video class="video-music" controls preload="metadata" playsinline>
+          <source src="./static/videos/3D_sample1_lab.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="video-qa">
+          <div class="qa-item">
+            <p><strong>Question:</strong> Measuring from the closest point of each object, which of these objects (table, stool, sofa, stove) is the closest to the TV?</p>
+            <p><strong>Options:</strong></p>
+            <ul style="list-style-type: none; padding-left: 0; display: flex; justify-content: space-between; text-align: left; max-width: 60%; margin: 0 auto;">
+              <li><input type="radio" name="q6"> A. Table</li>
+              <li><input type="radio" name="q6"> B. Stool</li>
+              <li><input type="radio" name="q6"> C. Sofa</li>
+              <li><input type="radio" name="q6"> D. Stove</li>
+            </ul>
+            <div id="answer-6" style="display:none; text-align: center; margin-top: 20px;">
+              <div style="display: flex; justify-content: center; align-items: center; gap: 20px; white-space: nowrap;">
+                <p><strong style="color: rgb(97,124,90);">Ground Truth:</strong> Table</p>
+                <p><strong style="color: rgb(185,87,59);">ChatGPT-5.1:</strong> Sofa</p>
+              </div>
+            </div>
+            <p class="click-hint" style="width:85%; cursor:pointer; margin-top: 20px;" onclick="toggleAnswer('answer-6', this)">
+              <img src="./static/images/icons/teaser.gif" style="width:1.5rem">
+              <strong>Click to view Ground Truth and ChatGPT-5.1's answer!</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video 5 -->
+      <div id="Touristvideo7Container" class="video-container" style="display:none;">
+        <div class="video-label">Absolute Distance</div>
+        <video class="video-music" controls preload="metadata" playsinline>
+          <source src="./static/videos/3D_sample2_lab.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="video-qa">
+          <div class="qa-item">
+            <p><strong>Question:</strong> Measuring from the closest point of each object, what is the distance between the table and the piano (in meters)?</p>
+            <div id="answer-7" style="display:none; text-align: center; margin-top: 20px;">
+              <div style="display: flex; justify-content: center; align-items: center; gap: 20px; white-space: nowrap;">
+                <p><strong style="color: rgb(97,124,90);">Ground Truth:</strong> 2.3</p>
+                <p><strong style="color: rgb(185,87,59);">ChatGPT-5.1:</strong> 0.1</p>
+              </div>
+            </div>
+            <p class="click-hint" style="width:85%; cursor:pointer; margin-top: 20px;" onclick="toggleAnswer('answer-7', this)">
+              <img src="./static/images/icons/teaser.gif" style="width:1.5rem">
+              <strong>Click to view Ground Truth and ChatGPT-5.1's answer!</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video 6 -->
+      <div id="Touristvideo8Container" class="video-container" style="display:none;">
+        <div class="video-label">Appearance Order</div>
+        <video class="video-music" controls preload="metadata" playsinline>
+          <source src="./static/videos/3D_sample3_simulation.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="video-qa">
+          <div class="qa-item">
+            <p><strong>Question:</strong> What will be the first-time appearance order of the following categories in the video: blanket, trash can, microwave, plant?</p>
+            <p><strong>Options:</strong></p>
+            <div style="display: flex; justify-content: center; flex-wrap: wrap; max-width: 800px; margin: 0 auto; gap: 20px;">
+              <div style="flex: 1; min-width: 300px; text-align: left;">
+                <input type="radio" id="optionA8" name="q8"> 
+                <label for="optionA8">A. microwave, blanket, plant, trash can</label>
+              </div>
+              <div style="flex: 1; min-width: 300px; text-align: left;">
+                <input type="radio" id="optionB8" name="q8">
+                <label for="optionB8">B. plant, blanket, microwave, trash can</label>
+              </div>
+              <div style="flex: 1; min-width: 300px; text-align: left;">
+                <input type="radio" id="optionC8" name="q8">
+                <label for="optionC8">C. plant, blanket, trash can, microwave</label>
+              </div>
+              <div style="flex: 1; min-width: 300px; text-align: left;">
+                <input type="radio" id="optionD8" name="q8">
+                <label for="optionD8">D. blanket, trash can, microwave, plant</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="answer-8" style="display:none; text-align: center; margin-top: 20px;">
+          <div style="display: flex; justify-content: center; align-items: center; gap: 20px; white-space: nowrap;">
+            <p><strong style="color: rgb(97,124,90);">Ground Truth:</strong> C.</p>
+            <p><strong style="color: rgb(185,87,59);">Gemini:</strong> B.</p>
+          </div>
+        </div>
+        <p class="click-hint" style="width:85%; cursor:pointer; margin-top: 20px;" onclick="toggleAnswer('answer-8', this)">
+          <img src="./static/images/icons/teaser.gif" style="width:1.5rem">
+          <strong>Click to view Ground Truth and ChatGPT-5.1's answer!</strong>
+        </p>
+      </div>
+
+      <!-- Video 7 -->
+      <div id="Touristvideo9Container" class="video-container" style="display:none;">
+        <div class="video-label">Room Size</div>
+        <video class="video-music" controls preload="metadata" playsinline>
+          <source src="./static/videos/3D_sample4_simulation.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="video-qa">
+          <div class="qa-item">
+            <p><strong>Question:</strong> What is the size of this room (in square meters)? If multiple rooms are shown, estimate the size of the combined space.</p>
+            <div id="answer-9" style="display:none; text-align: center; margin-top: 20px;">
+              <div style="display: flex; justify-content: center; align-items: center; gap: 20px; white-space: nowrap;">
+                <p><strong style="color: rgb(97,124,90);">Ground Truth:</strong> 29.0</p>
+                <p><strong style="color: rgb(185,87,59);">ChatGPT-5.1:</strong> 50</p>
+              </div>
+            </div>
+            <p class="click-hint" style="width:85%; cursor:pointer; margin-top: 20px;" onclick="toggleAnswer('answer-9', this)">
+              <img src="./static/images/icons/teaser.gif" style="width:1.5rem">
+              <strong>Click to view Ground Truth and ChatGPT-5.1's answer!</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleAnswer(answerId, element) {
+  const answerElement = document.getElementById(answerId);
+  const isVisible = answerElement.style.display === "block";
+
+  if (isVisible) {
+    answerElement.style.display = "none";
+    element.innerHTML = '<img src="./static/images/icons/teaser.gif" style="width:1.5rem"> <strong>Click to view Ground Truth and ChatGPT-5.1\'s answer!</strong>';
+  } else {
+    answerElement.style.display = "block";
+    element.innerHTML = '<img src="./static/images/icons/teaser.gif" style="width:1.5rem"> <strong>Hide answer</strong>';
+  }
+}
+</script>
+<!-- End Interactive Video Q&A Section -->
+<!-- 
 <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container">
@@ -263,18 +500,24 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
+      <div class="column is-full">
+        <h2 class="title is-3">Introduction</h2>
         <div class="content has-text-justified">
           <p>
-            Understanding the physical world is essential for generalist AI agents. However, it remains unclear whether state-of-the-art vision perception models (e.g., large VLMs) can reason physical properties quantitatively. Existing evaluations are predominantly VQA-based and qualitative, offering limited insight into whether these models can infer the kinematic quantities of moving objects from video observations. To address this, we present <span class="quantiphy" style="font-family: 'Times New Roman', Times, serif; font-weight: bold;">Quantiphy</span>, the first benchmark designed to quantitatively measure a VLM's physical reasoning ability. Comprising more than 3.3K video–text instances with numerical ground truth, <span class="quantiphy" style="font-family: 'Times New Roman', Times, serif; font-weight: bold;">Quantiphy</span> evaluates a VLM's performance on estimating an object's size, velocity, and acceleration at a given timestamp, using one of these properties as an input prior. The benchmark standardizes prompts and scoring to assess numerical accuracy, enabling fair comparisons across models. Our experiments on state-of-the-art VLMs reveal a consistent gap between their qualitative plausibility and actual numerical correctness. We further provide an in-depth analysis of key factors like background noise, counterfactual priors, and strategic prompting and find that state-of-the-art VLMs lean heavily on pre-trained world knowledge rather than faithfully using the provided visual and textual inputs as references when reasoning kinematic properties quantitatively. <span class="quantiphy" style="font-family: 'Times New Roman', Times, serif; font-weight: bold;">Quantiphy</span> offers the first rigorous, scalable testbed to move VLMs beyond mere verbal plausibility toward a numerically grounded physical understanding.
+            Understanding the physical world is essential for generalist AI agents. However, it remains unclear whether state-of-the-art vision perception models (e.g., large VLMs) can reason physical properties quantitatively. Existing evaluations are predominantly VQA-based and qualitative, offering limited insight into whether these models can infer the kinematic quantities of moving objects from video observations. 
+            <br>
+            <br>
+            To address this, we present <span class="quantiphy">QuantiPhy</span>, the first benchmark designed to quantitatively measure a VLM's physical reasoning ability. Comprising more than 3.3K video–text instances with numerical ground truth, <span class="quantiphy">QuantiPhy</span> evaluates a VLM's performance on estimating an object's size, velocity, and acceleration at a given timestamp, using one of these properties as an input prior. The benchmark standardizes prompts and scoring to assess numerical accuracy, enabling fair comparisons across models. Our experiments on state-of-the-art VLMs reveal a consistent gap between their qualitative plausibility and actual numerical correctness. 
+            <br>
+            <br>
+            We further provide an in-depth analysis of key factors like background noise, counterfactual priors, and strategic prompting and find that state-of-the-art VLMs lean heavily on pre-trained world knowledge rather than faithfully using the provided visual and textual inputs as references when reasoning kinematic properties quantitatively. <span class="quantiphy">QuantiPhy</span> offers the first rigorous, scalable testbed to move VLMs beyond mere verbal plausibility toward a numerically grounded physical understanding.
           </p>
         </div>
       </div>
