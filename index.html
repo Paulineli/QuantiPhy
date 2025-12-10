@@ -32,7 +32,7 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
+  <link rel="icon" href="./static/images/QuantiPhy_logo_pure.png" type="image/png">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -85,12 +85,6 @@
 </nav>
 -->
 
-<!-- QuantiPhy Teaser Image -->
-<section class="hero teaser" style="padding-top: 0;">
-  <div class="hero-body" style="padding: 0;">
-    <img src="./static/images/teaser.png" alt="QuantiPhy Teaser" style="width: 100%; display: block;">
-  </div>
-</section>
 
 <!-- QuantiPhy Title and Authors -->
 <section class="hero">
@@ -260,11 +254,11 @@
         </video>
         <div class="video-qa">
           <div class="qa-item">
-            <p><strong>Prior Knowledge:</strong> The woman's walking speed is 1.25 m/s. </p>
-            <p><strong>Question:</strong> What is the distance between the two black road signs in meters?</p>
+            <p><strong>Prior Knowledge:</strong> The big elephant's average walking speed is 2.31 m/s. </p>
+            <p><strong>Question:</strong> What is the height of the small elephant in meters?</p>
             <div id="answer-3" style="display:none; text-align: center; margin-top: 20px;">
               <div style="display: flex; justify-content: center; align-items: center; gap: 20px; white-space: nowrap;">
-                <p><strong style="color: rgb(97,124,90);">Ground Truth:</strong> 4.77</p>
+                <p><strong style="color: rgb(97,124,90);">Ground Truth:</strong> 2.20</p>
                 <p><strong style="color: rgb(185,87,59);">ChatGPT-5.1:</strong> 0.00</p>
               </div>
             </div>
@@ -285,7 +279,7 @@
         </video>
         <div class="video-qa">
           <div class="qa-item">
-            <p><strong>Prior Knowledge:</strong> The woman's walking speed is 1.25 m/s. </p>
+            <p><strong>Prior Knowledge:</strong> The woman's average walking speed is 1.25 m/s. </p>
             <p><strong>Question:</strong> What is the distance between the two black road signs in meters?</p>
             <div id="answer-4" style="display:none; text-align: center;">
               <div style="display: flex; justify-content: center; align-items: center; gap: 20px; white-space: nowrap;">
@@ -508,8 +502,8 @@ function toggleAnswer(answerId, element) {
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-full">
-        <h2 class="title is-3">Introduction</h2>
-        <div class="content has-text-justified">
+        <h2 class="title is-3" style="color: rgb(0,0,0);">Introduction</h2>
+        <div class="content has-text-justified" style="color: rgb(0,0,0);">
           <p>
             Understanding the physical world is essential for generalist AI agents. However, it remains unclear whether state-of-the-art vision perception models (e.g., large VLMs) can reason physical properties quantitatively. Existing evaluations are predominantly VQA-based and qualitative, offering limited insight into whether these models can infer the kinematic quantities of moving objects from video observations. 
             <br>
@@ -524,20 +518,87 @@ function toggleAnswer(answerId, element) {
     </div>
     <!--/ Abstract. -->
 
-    <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-    <!--/ Paper video. -->
+
+    
+<!-- QuantiPhy Teaser Image -->
+<section class="hero teaser" style="padding-top: 0;">
+  <div class="hero-body" style="padding: 0;">
+    <img src="./static/images/teaser_try2.png" alt="QuantiPhy Teaser" style="width: 100%; display: block;">
   </div>
 </section>
 
+<div class="container is-max-desktop" style="padding: 1.5rem; padding-bottom: 0.5rem;">
+  <p class="has-text-justified" style="font-size: 0.95rem; margin-bottom: 0;">
+    <strong>Figure 1.</strong> On a crowded city street, a bird's nest falls from a branch, a car rushes by, an eagle flits over a building, and a person walks in a crosswalk — the real world is full of complex physical motion. To enable AI to understand and navigate this environment, it is essential for generalist embodied systems to reason about physical properties quantitatively. Because objects obey common laws of physics, their kinematic properties (such as size, velocity, and acceleration) are interrelated. This interdependence makes it possible for visual AI to systematically reason about these properties with respect to available priors. In this work, we present <span class="quantiphy" style="font-family: 'Times New Roman', Times, serif; font-weight: bold;">Quantiphy</span>, the first benchmark to evaluate the reasoning ability of AI models on quantitative kinematic inference tasks.
+  </p>
+</div>
+  </div>
+</section>
+
+<!-- QuantiPhy Dataset Section -->
+<section style="padding-top: 1rem; padding-bottom: 2rem; background-color: rgb(251, 239, 222); width: 100%;">
+  <div style="width: 100%; padding: 0;">
+    <div class="has-text-centered">
+      <h2 class="title is-3" style="color: rgb(0,0,0);"><img src="./static/images/QuantiPhy_logo_pure.png" alt="QuantiPhy Logo" style="height: 1.5em; vertical-align: middle; margin-right: 0.5rem;">QuantiPhy Dataset</h2>
+    </div>
+  </div>
+  <div class="container is-max-desktop">
+    <img src="./static/images/data_cat.png" alt="QuantiPhy Dataset" style="max-width: 80%; display: block; margin: 1.5rem auto 0 auto;">
+  </div>
+  
+  <!-- Dataset Overview Subsection -->
+  <div class="container is-max-desktop" style="margin-top: 2rem;">
+    <h1 class="title is-4" style="color: rgb(0,0,0);">Dataset Overview</h1>
+    <div class="content" style="color: rgb(0,0,0);">
+      <p class="has-text-justified">
+        <strong><span class="quantiphy">QuantiPhy</span></strong> introduces a rigorous benchmark for evaluating <strong>quantitative physical reasoning</strong> in Vision-Language Models. Unlike traditional VQA tasks that focus on qualitative descriptions, QuantiPhy challenges models to perform precise numerical inference grounded in physical laws.
+      </p>
+      
+      <ul style="list-style-type: none; padding-left: 0; margin-top: 0.75rem;">
+        <li style="margin-bottom: 0.4rem;">
+          <strong>🆕 Novel Task: Kinematic Inference</strong>
+          <p class="has-text-justified" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+            We formally define a task where object size, velocity, and acceleration are treated as mutually constraining quantities.
+          </p>
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+            <li><strong>Input:</strong> A video clip + A <strong>single physical prior</strong> provided as text (e.g., "The car is 4 meters long" or "Gravity is 9.8 m/s²").</li>
+            <li><strong>Reasoning:</strong> The model must use the provided prior to recover the <strong>world-to-pixel scale</strong> and leverage kinematic equations to deduce other unknown properties of the target object.</li>
+            <li><strong>Output:</strong> A precise <strong>numerical value</strong> (with units) for a target property (e.g., "The velocity at t=2s is 12.5 m/s").</li>
+          </ul>
+        </li>
+        
+        <li style="margin-bottom: 0.4rem;">
+          <strong>🗂️ Structured Taxonomy</strong>
+          <p class="has-text-justified" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+            To provide fine-grained analysis of model capabilities, the benchmark is organized along two primary axes:
+          </p>
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+            <li><strong>Dimensionality:</strong> <strong>2D</strong> (Planar motion) vs. <strong>3D</strong> (Depth-varying motion).</li>
+            <li><strong>Physical Prior:</strong> <strong>Static</strong> (Size-based) vs. <strong>Dynamic</strong> (Motion-based, e.g., Velocity/Acceleration).</li>
+          </ul>
+        </li>
+        
+        <li style="margin-bottom: 0.25rem;">
+          <strong>📊 Scale & Diversity</strong>
+          <p class="has-text-justified" style="margin-top: 0.5rem;">
+            The dataset contains <strong>3,355</strong> video-question pairs derived from <strong>569</strong> unique videos. The data spans diverse sources (Simulation, Lab, Internet) to ensure coverage across microscopic, macroscopic, and astronomical scales.
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+    
+    <!-- Figure with caption -->
+    <!-- <figure style="margin: 1.5rem 0;">
+      <img src="./static/images/YOUR_IMAGE.png" alt="Description" style="max-width: 100%; display: block; margin: 0 auto;">
+      <figcaption style="text-align: center; margin-top: 1rem; color: rgb(0,0,0);">
+        <strong>Figure X: Title.</strong>  -->
+        <!-- Add your figure caption here -->
+      <!-- </figcaption>
+    </figure> -->
+  </div>
+</section>
+<!-- End QuantiPhy Dataset Section -->
 
 <section class="section">
   <div class="container is-max-desktop">
