@@ -95,33 +95,39 @@
           <h1 class="title is-1 publication-title"><span class="quantiphy">QuantiPhy:</span> A Quantitative Benchmark Evaluating Physical Reasoning Abilities of Vision-Language Models</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              Li Puyin<sup>1</sup>*,</span>
+              Li Puyin<sup>🌲*</sup>,</span>
             <span class="author-block">
-              Tiange Xiang<sup>1</sup>*,</span>
+              Tiange Xiang<sup>🌲*</sup>,</span>
             <span class="author-block">
-              Ella Mao<sup>1</sup>*,
+              Ella Mao<sup>🌲*</sup>,
             </span>
             <br>
             <span class="author-block">
-              Shirley Wei<sup>1</sup>,
+              Shirley Wei<sup>🌲</sup>,
             </span>
             <span class="author-block">
-              Xinye Chen<sup>1</sup>,
+              Xinye Chen<sup>🌲</sup>,
             </span>
             <span class="author-block">
-              Adnan Masood<sup>2</sup>,
+              Adnan Masood<sup>🌍</sup>,
+            </span>
+            <br>
+            <span class="author-block">
+              Li Fei-fei<sup>🌲†</sup>,
             </span>
             <span class="author-block">
-              Li Fei-fei<sup>1</sup>†,
-            </span>
-            <span class="author-block">
-              Ehsan Adeli<sup>1</sup>†
+              Ehsan Adeli<sup>🌲†</sup>
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Stanford University,</span>
-            <span class="author-block"><sup>2</sup>UST Global</span>
+            <span class="author-block"><sup>🌲</sup>Stanford University,</span>
+            <span class="author-block"><sup>🌍</sup>UST Global</span>
+          </div>
+
+          <div class="is-size-6 publication-authors" style="margin-top: 0.5rem;">
+            <span>* Equal first authorship</span>
+            <span style="margin-left: 1.5rem;">† Equal last authorship</span>
           </div>
 
           <div class="column has-text-centered">
@@ -205,7 +211,8 @@
 <section class="section" style="padding-top: 1rem; padding-bottom: 1rem; background-color: rgb(251, 239, 222);">
   <div class="container" style="max-width: 1100px;">
     <p style="text-align: center; font-weight: bold; margin-top: 10px; margin-bottom: 10px; font-size: 2em;">
-      Compare your physical reasoning abilities with ChatGPT-5.1!
+      <!-- Compare your physical reasoning abilities with ChatGPT-5.1! -->
+      Are you better than ChatGPT-5.1 at physical reasoning?
     </p>
 
     <div class="l-body">
@@ -543,7 +550,13 @@ function toggleAnswer(answerId, element) {
     </div>
   </div>
   <div class="container is-max-desktop">
-    <img src="./static/images/data_cat.png" alt="QuantiPhy Dataset" style="max-width: 80%; display: block; margin: 1.5rem auto 0 auto;">
+    <img src="./static/images/data_cat.png" alt="QuantiPhy Dataset" style="max-width: 90%; display: block; margin: 1.5rem auto 0 auto;">
+  </div>
+  
+  <div class="container is-max-desktop" style="padding: 1.5rem; padding-bottom: 0.5rem;">
+    <p class="has-text-justified" style="font-size: 0.95rem; margin-bottom: 0;">
+      <strong>Figure 2.</strong> Sample examples from <span class="quantiphy">QuantiPhy</span>, illustrating the four core task combinations defined by <em>Dimensionality</em> {2D, 3D} and <em>Physical Prior</em> {Static, Dynamic}, as described in the Dataset Overview section. Our collected data is diverse in nature, and each video is paired with multiple (prior, question, ground truth) triplets. Please see the supplementary materials for more data examples.
+    </p>
   </div>
   
   <!-- Dataset Overview Subsection -->
