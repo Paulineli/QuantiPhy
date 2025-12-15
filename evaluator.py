@@ -2,18 +2,20 @@ import pandas as pd
 import glob
 import os
 import argparse
+import sys
 
 """
 This script is used to calculate the MRA metrics for the QuantiPhy dataset.
 
 Usage:
-python evaluator.py <input_dir> <output_dir>
+python evaluator.py <input_dir> <output_dir> [--gt_file GT_FILE]
 
 Example:
 python evaluator.py /Users/paulineli/Desktop/CIB/QuantiPhy/additional_tasks/original /Users/paulineli/Desktop/CIB/QuantiPhy/mra_experiments/original
 Args:
     input_dir: Input directory containing CSV files to process
     output_dir: Output directory to save processed results
+    gt_file: Optional ground truth CSV file (default: quantiphy_validation.csv in current directory)
 
 Returns:
     A CSV file containing the MRA metrics for each model and the average MRA for each category and background class
@@ -21,14 +23,62 @@ Returns:
 parser = argparse.ArgumentParser(description='Process CSV files and calculate MRA metrics.')
 parser.add_argument('input_dir', type=str, help='Input directory containing CSV files to process')
 parser.add_argument('output_dir', type=str, help='Output directory to save processed results')
+parser.add_argument('--gt_file', type=str, default='quantiphy_validation.csv', 
+                    help='Ground truth CSV file (default: quantiphy_validation.csv in current directory)')
 args = parser.parse_args()
 
 input_dir = args.input_dir
 output_dir = args.output_dir
+gt_file = args.gt_file
 
 os.makedirs(output_dir, exist_ok=True)
 
+# Load and validate ground truth file if provided
+gt_df = None
+if gt_file and os.path.exists(gt_file):
+    print(f"Loading ground truth file: {gt_file}")
+    gt_df = pd.read_csv(gt_file)
+    
+    # Get the first column name
+    first_col = gt_df.columns[0]
+    
+    # Check if first column is integer
+    # try:
+    #     gt_df[first_col] = pd.to_numeric(gt_df[first_col], errors='raise').astype(int)
+    #     print(f"  ✓ First column '{first_col}' contains integer IDs")
+    # except (ValueError, TypeError) as e:
+    #     raise ValueError(f"First column '{first_col}' in GT file must contain integer values. Error: {e}")
+    
+    # Check if 'ground_truth_posterior' column exists
+    if 'ground_truth_posterior' not in gt_df.columns:
+        raise ValueError(f"Column 'ground_truth_posterior' not found in GT file. Available columns: {list(gt_df.columns)}")
+    print(f"  ✓ Column 'ground_truth_posterior' exists")
+    
+    # Check if all values in 'ground_truth_posterior' are float
+    gt_posterior_numeric = pd.to_numeric(gt_df['ground_truth_posterior'], errors='coerce')
+    non_float_count = gt_df['ground_truth_posterior'].notna().sum() - gt_posterior_numeric.notna().sum()
+    if non_float_count > 0:
+        raise ValueError(f"Found {non_float_count} non-float values in 'ground_truth_posterior' column")
+    print(f"  ✓ All values in 'ground_truth_posterior' are float")
+    
+    # Create a mapping from ID to ground_truth_posterior
+    gt_mapping = dict(zip(gt_df[first_col], gt_posterior_numeric))
+    print(f"  ✓ Loaded {len(gt_mapping)} ground truth entries\n")
+elif gt_file:
+    print(f"Warning: GT file '{gt_file}' not found. Using ground_truth_posterior from input files.\n")
+
 csv_files = glob.glob(os.path.join(input_dir, '*.csv'))
+
+if len(csv_files) == 0:
+    print(f"Warning: No CSV files found in input directory: {input_dir}")
+    print("Creating empty results file.")
+    results_df = pd.DataFrame()
+    summary_output_path = os.path.join(output_dir, 'all_model_results.csv')
+    results_df.to_csv(summary_output_path, index=False)
+    print(f"Empty summary saved to: {summary_output_path}")
+    sys.exit(0)
+
+print(f"Found {len(csv_files)} CSV file(s) to process\n")
 
 all_results = []
 
@@ -49,6 +99,26 @@ for input_file in csv_files:
         )
     
     df = df.sort_values(by=['video_id', 'question'])
+    
+    # Replace ground_truth_posterior with values from GT file if available
+    if gt_df is not None:
+        # Get the ID column from input file (first column)
+        input_id_col = df.columns[0]
+        
+        # Convert to integer for matching (handle NaN values)
+        try:
+            input_ids_numeric = pd.to_numeric(df[input_id_col], errors='coerce')
+            # Convert to Int64 (nullable integer type) to preserve NaN values
+            input_ids = input_ids_numeric.astype('Int64')
+            df[input_id_col] = input_ids
+        except (ValueError, TypeError) as e:
+            print(f"  Warning: Could not convert first column '{input_id_col}' to integer. Error: {e}. Skipping GT replacement.")
+        else:
+            # Replace ground_truth_posterior with values from GT mapping
+            # Use the integer IDs to map (pandas map handles Int64 with NaN correctly)
+            df['ground_truth_posterior'] = input_ids.map(gt_mapping)
+            matched_count = df['ground_truth_posterior'].notna().sum()
+            print(f"  Matched {matched_count}/{len(df)} rows with GT file")
     
     # Calculate percentage of invalid parsed_value records
     total_records = len(df)
@@ -85,10 +155,6 @@ for input_file in csv_files:
         abs(row['parsed_value'] - row['ground_truth_posterior']) / row['ground_truth_posterior'] < (1 - theta)
         for theta in C
     ) / 10 if pd.notna(row['ground_truth_posterior']) and row['ground_truth_posterior'] != 0 else float('nan'), axis=1)
-    
-    output_name = file_name.replace('merged_', '').replace('.csv', '_mra.csv')
-    output_path = os.path.join(output_dir, output_name)
-    df.to_csv(output_path, index=False)
     
     mra = {}
     for category in df['category'].unique():
@@ -145,7 +211,13 @@ for input_file in csv_files:
     all_results.append(result_row)
 
 # Save all results to CSV
-results_df = pd.DataFrame(all_results)
+if len(all_results) == 0:
+    print("\n\nWarning: No results to save. No CSV files were successfully processed.")
+    results_df = pd.DataFrame()
+else:
+    results_df = pd.DataFrame(all_results)
+    print(f"\n\nProcessed {len(all_results)} model(s)")
+
 summary_output_path = os.path.join(output_dir, 'all_model_results.csv')
 results_df.to_csv(summary_output_path, index=False)
-print(f"\n\nSummary saved to: {summary_output_path}")
+print(f"Summary saved to: {summary_output_path}")
