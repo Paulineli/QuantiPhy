@@ -46,47 +46,79 @@
 </head>
 <body>
 
-<!-- Navigation bar commented out
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
+<!-- QuantiPhy Side Navigation -->
+<nav id="quantiphy-sidebar" style="position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 1000; opacity: 0; transition: opacity 0.3s ease; pointer-events: none;">
+  <div style="background: white; border-radius: 16px; padding: 1rem 0.8rem; box-shadow: 0 4px 20px rgba(0,0,0,0.12); border: 1px solid rgba(11,61,62,0.1);">
+    <!-- Logo -->
+    <a href="#" style="display: flex; justify-content: center; margin-bottom: 1rem; text-decoration: none;">
+      <img src="./static/images/QuantiPhy_logo_pure.png" alt="Logo" style="height: 2rem;">
     </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://keunhong.com">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
+    
+    <!-- Divider -->
+    <div style="height: 1px; background: linear-gradient(to right, transparent, rgba(11,61,62,0.2), transparent); margin-bottom: 0.8rem;"></div>
+    
+    <!-- Nav Links -->
+    <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+      <a href="#interactive-section" class="sidebar-link" title="Interactive Demo" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; color: rgb(11,61,62); text-decoration: none; transition: all 0.2s ease; background: transparent;">
+        <i class="fas fa-play-circle" style="font-size: 1.1rem;"></i>
       </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
-        </div>
-      </div>
+      <a href="#dataset-section" class="sidebar-link" title="Dataset" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; color: rgb(11,61,62); text-decoration: none; transition: all 0.2s ease; background: transparent;">
+        <i class="fas fa-database" style="font-size: 1.1rem;"></i>
+      </a>
+      <a href="#evaluation-section" class="sidebar-link" title="Evaluation" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; color: rgb(11,61,62); text-decoration: none; transition: all 0.2s ease; background: transparent;">
+        <i class="fas fa-chart-bar" style="font-size: 1.1rem;"></i>
+      </a>
+      <a href="#dissecting-section" class="sidebar-link" title="Analysis" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; color: rgb(11,61,62); text-decoration: none; transition: all 0.2s ease; background: transparent;">
+        <i class="fas fa-microscope" style="font-size: 1.1rem;"></i>
+      </a>
     </div>
 
+    <!-- Divider -->
+    <div style="height: 1px; background: linear-gradient(to right, transparent, rgba(11,61,62,0.2), transparent); margin: 0.8rem 0;"></div>
+    
+    <!-- Back to top -->
+    <a href="#" class="sidebar-link" title="Back to Top" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; color: rgb(229,76,45); text-decoration: none; transition: all 0.2s ease; background: transparent;">
+      <i class="fas fa-arrow-up" style="font-size: 1rem;"></i>
+    </a>
   </div>
 </nav>
--->
+
+<style>
+  .sidebar-link:hover {
+    background: rgba(11,61,62,0.1) !important;
+    transform: scale(1.1);
+  }
+  .sidebar-link:hover[title="Back to Top"] {
+    background: rgba(229,76,45,0.1) !important;
+  }
+  #quantiphy-sidebar.visible {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+  @media (max-width: 1400px) {
+    #quantiphy-sidebar {
+      right: 10px;
+    }
+  }
+  @media (max-width: 768px) {
+    #quantiphy-sidebar {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // Show/hide sidebar on scroll
+  const sidebar = document.getElementById('quantiphy-sidebar');
+  
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      sidebar.classList.add('visible');
+    } else {
+      sidebar.classList.remove('visible');
+    }
+  });
+</script>
 
 
 <!-- QuantiPhy Title and Authors -->
@@ -211,7 +243,7 @@
 -->
 
 <!-- Interactive Video Q&A Section -->
-<section class="section" style="padding-top: 1rem; padding-bottom: 1rem; background-color: rgb(251, 239, 222);">
+<section id="interactive-section" class="section" style="padding-top: 1rem; padding-bottom: 1rem; background-color: rgb(251, 239, 222);">
   <div class="container" style="max-width: 1100px;">
     <p style="text-align: center; font-weight: bold; margin-top: 10px; margin-bottom: 10px; font-size: 2em;">
       <!-- Compare your physical reasoning abilities with ChatGPT-5.1! -->
@@ -546,7 +578,7 @@ function toggleAnswer(answerId, element) {
 </section>
 
 <!-- QuantiPhy Dataset Section -->
-<section style="padding-top: 1rem; padding-bottom: 2rem; background-color: rgb(251, 239, 222); width: 100%;">
+<section id="dataset-section" style="padding-top: 1rem; padding-bottom: 2rem; background-color: rgb(251, 239, 222); width: 100%;">
   <div style="width: 100%; padding: 0;">
     <div class="has-text-centered">
       <h2 class="title is-3" style="color: rgb(0,0,0);"><img src="./static/images/QuantiPhy_logo_pure.png" alt="QuantiPhy Logo" style="height: 1.5em; vertical-align: middle; margin-right: 0.5rem;">QuantiPhy Dataset</h2>
@@ -645,11 +677,14 @@ function toggleAnswer(answerId, element) {
         </li>
       </ul>
         </div>
-          </div>
+      </div>
   
   <!-- Dataset Construction Subsection -->
   <div class="container is-max-desktop" style="margin-top: 2rem;">
-    <img src="./static/images/data_construction.png" alt="Dataset Construction Pipeline" style="max-width: 100%; display: block; margin: 0 auto 1.5rem auto; border-radius: 12px;">
+    <img src="./static/images/data_construction.png" alt="Dataset Construction Pipeline" style="max-width: 100%; display: block; margin: 0 auto; border-radius: 12px;">
+    <p class="has-text-centered" style="font-size: 0.9rem; margin-top: 0.5rem; margin-bottom: 1.5rem; color: rgb(0,0,0);">
+      <strong>Figure 4.</strong> QuantiPhy dataset construction pipeline.
+    </p>
     <h1 class="title is-4" style="color: rgb(0,0,0);">Dataset Construction</h1>
     <div class="content" style="color: rgb(0,0,0);">
       <p class="has-text-justified">
@@ -688,8 +723,8 @@ function toggleAnswer(answerId, element) {
         </li>
       </ul>
         </div>
-        </div>
-    
+          </div>
+
     <!-- Figure with caption -->
     <!-- <figure style="margin: 1.5rem 0;">
       <img src="./static/images/YOUR_IMAGE.png" alt="Description" style="max-width: 100%; display: block; margin: 0 auto;">
@@ -698,17 +733,17 @@ function toggleAnswer(answerId, element) {
         <!-- Add your figure caption here -->
       <!-- </figcaption>
     </figure> -->
-      </div>
+        </div>
 </section>
 <!-- End QuantiPhy Dataset Section -->
 
 <!-- Evaluation on QuantiPhy Section -->
-<section class="section" style="background-color: white;">
+<section id="evaluation-section" class="section" style="background-color: white;">
   <div style="width: 100%; padding: 0;">
     <div class="has-text-centered">
       <h2 class="title is-3" style="color: rgb(0,0,0);"><img src="./static/images/QuantiPhy_logo_pure.png" alt="QuantiPhy Logo" style="height: 1.5em; vertical-align: middle; margin-right: 0.5rem;">Evaluation on QuantiPhy</h2>
+      </div>
     </div>
-  </div>
   
   <!-- Evaluation Setup Subsection -->
   <div class="container is-max-desktop" style="margin-top: 1rem;">
@@ -758,9 +793,9 @@ function toggleAnswer(answerId, element) {
       </ul>
       <p class="has-text-justified" style="color: rgb(0,0,0); margin-top: 1rem; margin-bottom: 0;">
         As a result, MRA better reflects how physical quantities are inferred in practice and provides a smoother, more informative signal for comparing models.
-      </p>
-      </div>
-    </div>
+          </p>
+        </div>
+          </div>
   
   <!-- QuantiPhy Leaderboard Subsection -->
   <div class="container is-max-desktop" style="margin-top: 2.5rem;">
@@ -1048,23 +1083,427 @@ function toggleAnswer(answerId, element) {
           </tr>
         </tbody>
       </table>
-    </div>
+            </div>
     
     <p style="font-size: 0.85rem; color: #666; margin-top: 0.5rem;">
       <strong>Note:</strong> Best proprietary model scores are highlighted in <span style="background-color: rgba(229,76,45,0.15); padding: 2px 6px; border-radius: 3px;">orange</span>, best open-weight model scores in <span style="background-color: rgba(11,61,62,0.12); padding: 2px 6px; border-radius: 3px;">teal</span>.
     </p>
-  </div>
+          </div>
 </section>
 <!-- End Evaluation on QuantiPhy Section -->
+
+<!-- Dissecting Quantitative Reasoning Section -->
+<section id="dissecting-section" style="padding-top: 1rem; padding-bottom: 2rem; background-color: rgb(251, 239, 222); width: 100%;">
+  <div style="width: 100%; padding: 0;">
+    <div class="has-text-centered">
+      <h2 class="title is-3" style="color: rgb(0,0,0);"><img src="./static/images/QuantiPhy_logo_pure.png" alt="QuantiPhy Logo" style="height: 1.5em; vertical-align: middle; margin-right: 0.5rem;">Dissecting Quantitative Reasoning in Vision–Language Models</h2>
+          </div>
+        </div>
+  
+  <div class="container" style="margin-top: 1rem; max-width: 1400px; padding: 0 2rem;">
+    
+    <!-- Case Study Slider -->
+    <div class="case-slider-wrapper" style="margin: 1rem 0; background-color: white; padding: 1.5rem 2rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+      
+      <!-- Slider Title -->
+      <div style="text-align: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid rgba(11,61,62,0.15);">
+        <h3 style="color: rgb(11,61,62); font-size: 1.4rem; font-weight: 700; margin: 0;">
+          How Does GPT-5.1 Approach Kinematic Inference Tasks?
+        </h3>
+      </div>
+      
+      <div class="case-slider-container" style="position: relative; overflow: hidden; padding: 0 3rem;">
+        <div id="case-slider" style="display: flex; transition: transform 0.4s ease;">
+          
+          <!-- Case 1 -->
+          <div class="case-slide" style="min-width: 100%; box-sizing: border-box; display: flex; gap: 2rem; align-items: center; padding: 0 4rem;">
+            <div style="flex: 1; max-width: 45%;">
+              <img src="./static/images/case1.png" alt="Case 1" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            </div>
+            <div style="flex: 1; padding: 0.5rem 0;">
+              <div style="background: linear-gradient(135deg, rgb(11,61,62) 0%, rgb(20,90,92) 100%); color: white; padding: 0.5rem 1rem; border-radius: 6px; display: inline-block; margin-bottom: 1rem;">
+                <strong style="font-size: 1.1rem; color: white;">Case 1 — When Visual Measurement Works</strong>
+              </div>
+              <p style="color: rgb(0,0,0); line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.95rem;">
+                <strong style="color: rgb(11,61,62);">GPT-5.1 can infer kinematic quantities when visual cues are clean and well-scaled.</strong>
+              </p>
+              <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
+                Given a realistic object size and clear motion across frames, the model explicitly estimates pixel displacement, maps it to real-world units, and computes speed or dimensions proportionally.
+              </p>
+              <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
+                In these cases, predictions closely match ground truth, suggesting genuine use of visual evidence rather than memorized priors.
+              </p>
+              <p style="color: rgb(229,76,45); line-height: 1.7; font-size: 0.9rem; font-style: italic; border-left: 3px solid rgb(229,76,45); padding-left: 0.8rem;">
+                This represents GPT-5.1's best-case behavior: explicit visual measurement followed by numerical reasoning.
+          </p>
+        </div>
+        </div>
+
+          <!-- Case 2 -->
+          <div class="case-slide" style="min-width: 100%; box-sizing: border-box; display: flex; gap: 2rem; align-items: center; padding: 0 4rem;">
+            <div style="flex: 1; max-width: 45%;">
+              <img src="./static/images/case2.png" alt="Case 2" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      </div>
+            <div style="flex: 1; padding: 0.5rem 0;">
+              <div style="background: linear-gradient(135deg, rgb(11,61,62) 0%, rgb(20,90,92) 100%); color: white; padding: 0.5rem 1rem; border-radius: 6px; display: inline-block; margin-bottom: 1rem;">
+                <strong style="font-size: 1.1rem; color: white;">Case 2 — Sensitivity to Unrealistic Scale</strong>
+    </div>
+              <p style="color: rgb(0,0,0); line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.95rem;">
+                <strong style="color: rgb(11,61,62);">Unrealistic physical scales can derail otherwise correct visual reasoning.</strong>
+              </p>
+              <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
+                When object dimensions are inflated to implausible values (e.g., a car length of 5670 m), GPT-5.1 often performs arithmetic consistently but fails to detect scale violations.
+              </p>
+              <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
+                The model propagates the incorrect assumption through its calculations, leading to extreme numerical errors in downstream kinematic estimates.
+              </p>
+              <p style="color: rgb(229,76,45); line-height: 1.7; font-size: 0.9rem; font-style: italic; border-left: 3px solid rgb(229,76,45); padding-left: 0.8rem;">
+                Visual reasoning remains internally consistent, but lacks physical plausibility checks.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Case 3 -->
+          <div class="case-slide" style="min-width: 100%; box-sizing: border-box; display: flex; gap: 2rem; align-items: center; padding: 0 4rem;">
+            <div style="flex: 1; max-width: 45%;">
+              <img src="./static/images/case3.png" alt="Case 3" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            </div>
+            <div style="flex: 1; padding: 0.5rem 0;">
+              <div style="background: linear-gradient(135deg, rgb(11,61,62) 0%, rgb(20,90,92) 100%); color: white; padding: 0.5rem 1rem; border-radius: 6px; display: inline-block; margin-bottom: 1rem;">
+                <strong style="font-size: 1.1rem; color: white;">Case 3 — Guessing Without Visual Evidence</strong>
+              </div>
+              <p style="color: rgb(0,0,0); line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.95rem;">
+                <strong style="color: rgb(11,61,62);">When visual input is removed, GPT-5.1 falls back to prior-driven guesses.</strong>
+              </p>
+              <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
+                With the video ablated, the model no longer has access to motion cues and instead produces values based on typical real-world expectations (e.g., "reasonable" speeds or object widths).
+              </p>
+              <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
+                These guesses often deviate substantially from ground truth and show little task-specific adaptation.
+              </p>
+              <p style="color: rgb(229,76,45); line-height: 1.7; font-size: 0.9rem; font-style: italic; border-left: 3px solid rgb(229,76,45); padding-left: 0.8rem;">
+                Without visual grounding, numerical outputs reflect priors rather than inference.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Case 4 -->
+          <div class="case-slide" style="min-width: 100%; box-sizing: border-box; display: flex; gap: 2rem; align-items: center; padding: 0 4rem;">
+            <div style="flex: 1; max-width: 45%;">
+              <img src="./static/images/case4.png" alt="Case 4" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            </div>
+            <div style="flex: 1; padding: 0.5rem 0;">
+              <div style="background: linear-gradient(135deg, rgb(11,61,62) 0%, rgb(20,90,92) 100%); color: white; padding: 0.5rem 1rem; border-radius: 6px; display: inline-block; margin-bottom: 1rem;">
+                <strong style="font-size: 1.1rem; color: white;">Case 4 — Prior Dominance</strong>
+              </div>
+              <p style="color: rgb(0,0,0); line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.95rem;">
+                <strong style="color: rgb(11,61,62);">For acceleration-related tasks, prior knowledge can override visual evidence.</strong>
+              </p>
+              <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
+                In scenarios involving falling objects, GPT-5.1 frequently outputs values close to canonical constants (e.g., gravitational acceleration), even when the video implies different kinematic behavior.
+              </p>
+              <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
+                This pattern suggests reliance on memorized physics facts instead of extracting acceleration from observed motion.
+              </p>
+              <p style="color: rgb(229,76,45); line-height: 1.7; font-size: 0.9rem; font-style: italic; border-left: 3px solid rgb(229,76,45); padding-left: 0.8rem;">
+                Correct-looking numbers do not necessarily imply visually grounded reasoning.
+          </p>
+        </div>
+      </div>
+          
+    </div>
+        <!-- Navigation Arrows -->
+        <button onclick="slideCases(-1)" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); background: rgba(11,61,62,0.85); color: white; border: none; padding: 12px 16px; cursor: pointer; border-radius: 5px; font-size: 1.2rem; z-index: 10;">❮</button>
+        <button onclick="slideCases(1)" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: rgba(11,61,62,0.85); color: white; border: none; padding: 12px 16px; cursor: pointer; border-radius: 5px; font-size: 1.2rem; z-index: 10;">❯</button>
+      </div>
+      <!-- Dots -->
+      <div style="text-align: center; margin-top: 1.5rem;">
+        <span id="case-dot-0" onclick="goToCaseSlide(0)" style="height: 12px; width: 12px; margin: 0 6px; background-color: rgb(11,61,62); border-radius: 50%; display: inline-block; cursor: pointer; transition: background-color 0.3s;"></span>
+        <span id="case-dot-1" onclick="goToCaseSlide(1)" style="height: 12px; width: 12px; margin: 0 6px; background-color: #bbb; border-radius: 50%; display: inline-block; cursor: pointer; transition: background-color 0.3s;"></span>
+        <span id="case-dot-2" onclick="goToCaseSlide(2)" style="height: 12px; width: 12px; margin: 0 6px; background-color: #bbb; border-radius: 50%; display: inline-block; cursor: pointer; transition: background-color 0.3s;"></span>
+        <span id="case-dot-3" onclick="goToCaseSlide(3)" style="height: 12px; width: 12px; margin: 0 6px; background-color: #bbb; border-radius: 50%; display: inline-block; cursor: pointer; transition: background-color 0.3s;"></span>
+      </div>
+    </div>
+    
+    <script>
+      let currentCaseSlide = 0;
+      const totalCaseSlides = 4;
+      
+      function slideCases(direction) {
+        currentCaseSlide += direction;
+        if (currentCaseSlide < 0) currentCaseSlide = totalCaseSlides - 1;
+        if (currentCaseSlide >= totalCaseSlides) currentCaseSlide = 0;
+        updateCaseSlider();
+      }
+      
+      function goToCaseSlide(index) {
+        currentCaseSlide = index;
+        updateCaseSlider();
+      }
+      
+      function updateCaseSlider() {
+        document.getElementById('case-slider').style.transform = `translateX(-${currentCaseSlide * 100}%)`;
+        for (let i = 0; i < totalCaseSlides; i++) {
+          document.getElementById(`case-dot-${i}`).style.backgroundColor = i === currentCaseSlide ? 'rgb(11,61,62)' : '#bbb';
+        }
+      }
+    </script>
+
+  </div>
+  
+  <!-- Scene Context Subsection -->
+  <div class="container is-max-desktop" style="margin-top: 2rem;">
+    <h1 class="title is-4" style="color: rgb(0,0,0);">Scene Context and Relational Cues</h1>
+    
+    <div class="content" style="color: rgb(0,0,0);">
+      <p class="has-text-justified">
+        We first examine how <strong>scene context</strong> affects quantitative reasoning by varying background complexity and the number of moving objects. Surprisingly, background complexity alone has only a mild effect on performance. While removing clutter via segmentation slightly stabilizes predictions, models often perform equally well—or even better—in visually rich scenes, likely due to the presence of implicit reference cues such as tiles, road markings, or architectural structures.
+      </p>
+      
+      <p class="has-text-justified">
+        In contrast, the <strong>number of objects</strong> in a scene has a consistent and substantial impact. Across models, multi-object scenes outperform single-object setups, suggesting that relational structure provides valuable comparative anchors for inferring both size and motion.
+      </p>
+      
+      <!-- Images side by side -->
+      <div style="display: flex; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap; justify-content: center;">
+        <div style="flex: 1; min-width: 300px; max-width: 55%;">
+          <img src="./static/images/mra_line_plot.png" alt="MRA Line Plot - Background Complexity and Object Count" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <p class="has-text-centered" style="font-size: 0.85rem; margin-top: 0.5rem; color: #666;">
+            <strong>Figure 5.</strong> Performance across background complexity and object count conditions.
+          </p>
+        </div>
+        <div style="flex: 1; min-width: 300px; max-width: 40%;">
+          <img src="./static/images/s_m.png" alt="Single vs Multiple Objects" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <p class="has-text-centered" style="font-size: 0.85rem; margin-top: 0.5rem; color: #666;">
+            <strong>Figure 6.</strong> Video type classification: single (S) vs. multiple (M) objects.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Takeaway Box -->
+      <div style="background: linear-gradient(135deg, rgba(11,61,62,0.08) 0%, rgba(229,76,45,0.08) 100%); border-left: 4px solid rgb(11,61,62); border-radius: 8px; padding: 1.2rem 1.5rem; margin-top: 1.5rem;">
+        <p style="margin: 0; color: rgb(0,0,0);">
+          <strong style="color: rgb(11,61,62);">💡 Takeaway:</strong> VLMs benefit less from visual simplicity than from relational and contextual cues embedded in the scene.
+          </p>
+        </div>
+      </div>
+    </div>
+  
+  <!-- Input Faithfulness Subsection -->
+  <div class="container is-max-desktop" style="margin-top: 2.5rem;">
+    <h1 class="title is-4" style="color: rgb(0,0,0);">Input Faithfulness: Video, Priors, and Prompting</h1>
+    
+    <div class="content" style="color: rgb(0,0,0);">
+      <p class="has-text-justified" style="font-style: italic; color: #555; margin-bottom: 1rem;">
+        "Do VLMs actually use what we give them?"
+      </p>
+      
+      <p class="has-text-justified">
+        We next investigate whether VLMs faithfully condition on the reference video and the explicit physical prior provided in the prompt. We evaluate models under three controlled settings: the default <strong>video + prior</strong> condition, a <strong>prior-only</strong> condition with the video removed, and a <strong>counterfactual prior</strong> condition where the numerical prior is systematically rescaled.
+      </p>
+      
+      <p class="has-text-justified">
+        If models relied on visual measurement and algebraic reasoning, removing the video or altering the prior should lead to substantial performance degradation. Instead, we observe a striking pattern: many models achieve comparable accuracy even without the video, indicating that plausible guesses based on memorized world knowledge already suffice. When the prior is counterfactually rescaled, performance collapses across nearly all models, with predictions remaining anchored to typical real-world magnitudes rather than the provided numerical values.
+      </p>
+      
+      <p class="has-text-justified">
+        Finally, we test whether structured <strong>chain-of-thought (CoT) prompting</strong> can mitigate these failures. Contrary to expectation, step-by-step decomposition does not systematically improve performance. For most models, explicitly reasoning through pixel measurement and scale estimation amplifies early numerical errors rather than correcting them.
+      </p>
+      
+      <!-- Input Faithfulness Table -->
+      <div style="overflow-x: auto; margin: 1.5rem 0;">
+        <table style="width: 100%; border-collapse: collapse; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); font-size: 14px;">
+          <thead>
+            <tr style="background: rgb(11,61,62);">
+              <th style="padding: 12px 15px; text-align: left; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.1); color: white;">Models</th>
+              <th style="padding: 12px 10px; text-align: center; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.1); color: white;">Size</th>
+              <th style="padding: 12px 10px; text-align: center; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.1); color: white;">Release</th>
+              <th style="padding: 12px 10px; text-align: center; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.1); border-left: 2px solid rgba(255,255,255,0.3); color: white;">Video + Prior</th>
+              <th style="padding: 12px 10px; text-align: center; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.1); color: white;">Prior only</th>
+              <th style="padding: 12px 10px; text-align: center; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.1); color: white;">Counterfactual</th>
+              <th style="padding: 12px 10px; text-align: center; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.1); color: white;">CoT</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Proprietary Models -->
+            <tr style="background-color: rgba(11,61,62,0.08);">
+              <td colspan="7" style="padding: 10px 15px; font-weight: 700; font-style: italic; color: #2d3748;">Proprietary models</td>
+            </tr>
+            <tr style="background: #fff;">
+              <td style="padding: 10px 15px; font-weight: 500; color: #2d3748; text-align: right;">ChatGPT-5.1</td>
+              <td style="padding: 10px; text-align: center; color: #666;">–</td>
+              <td style="padding: 10px; text-align: center; color: #666;">2025/11</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748; border-left: 2px solid #e2e8f0;">56.1</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">45.7</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">15.4</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">26.5</td>
+            </tr>
+            <tr style="background: #fafafa;">
+              <td style="padding: 10px 15px; font-weight: 500; color: #2d3748; text-align: right;">Gemini-2.5 Pro</td>
+              <td style="padding: 10px; text-align: center; color: #666;">–</td>
+              <td style="padding: 10px; text-align: center; color: #666;">2025/03</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748; border-left: 2px solid #e2e8f0;">59.2</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">45.0</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">29.9</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">48.7</td>
+            </tr>
+            <tr style="background: #fff;">
+              <td style="padding: 10px 15px; font-weight: 500; color: #2d3748; text-align: right;">Gemini-2.5 Flash</td>
+              <td style="padding: 10px; text-align: center; color: #666;">–</td>
+              <td style="padding: 10px; text-align: center; color: #666;">2025/03</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748; border-left: 2px solid #e2e8f0;">49.2</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">35.9</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">13.8</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">21.9</td>
+            </tr>
+            <tr style="background: #fafafa;">
+              <td style="padding: 10px 15px; font-weight: 500; color: #2d3748; text-align: right;">ChatGPT-5</td>
+              <td style="padding: 10px; text-align: center; color: #666;">–</td>
+              <td style="padding: 10px; text-align: center; color: #666;">2025/04</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748; border-left: 2px solid #e2e8f0;">33.5</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">50.2</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">29.6</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">53.0</td>
+            </tr>
+            <tr style="background: #fff;">
+              <td style="padding: 10px 15px; font-weight: 500; color: #2d3748; text-align: right;">Claude-4.5 Sonnet</td>
+              <td style="padding: 10px; text-align: center; color: #666;">–</td>
+              <td style="padding: 10px; text-align: center; color: #666;">2025/04</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748; border-left: 2px solid #e2e8f0;">25.1</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">15.7</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">11.4</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">25.9</td>
+            </tr>
+            
+            <!-- Open-weight Models -->
+            <tr style="background-color: rgba(11,61,62,0.08);">
+              <td colspan="7" style="padding: 10px 15px; font-weight: 700; font-style: italic; color: #2d3748;">Open-weight models</td>
+            </tr>
+            <tr style="background: #fff;">
+              <td style="padding: 10px 15px; font-weight: 500; color: #2d3748; text-align: right;">InternVL-3.5-30B</td>
+              <td style="padding: 10px; text-align: center; color: #666;">30B</td>
+              <td style="padding: 10px; text-align: center; color: #666;">2025/05</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748; border-left: 2px solid #e2e8f0;">45.4</td>
+              <td style="padding: 10px; text-align: center; color: #666;">–</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">12.1</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">17.6</td>
+            </tr>
+            <tr style="background: #fafafa;">
+              <td style="padding: 10px 15px; font-weight: 500; color: #2d3748; text-align: right;">Qwen3-VL-Instruct-8B</td>
+              <td style="padding: 10px; text-align: center; color: #666;">8B</td>
+              <td style="padding: 10px; text-align: center; color: #666;">2025/04</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748; border-left: 2px solid #e2e8f0;">40.5</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">24.9</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">12.0</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">21.0</td>
+            </tr>
+            <tr style="background: #fff;">
+              <td style="padding: 10px 15px; font-weight: 500; color: #2d3748; text-align: right;">Molmo-7B</td>
+              <td style="padding: 10px; text-align: center; color: #666;">7B</td>
+              <td style="padding: 10px; text-align: center; color: #666;">2024/09</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748; border-left: 2px solid #e2e8f0;">39.8</td>
+              <td style="padding: 10px; text-align: center; color: #666;">–</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">14.7</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">15.9</td>
+            </tr>
+            <tr style="background: #fafafa;">
+              <td style="padding: 10px 15px; font-weight: 500; color: #2d3748; text-align: right;">Phi-4-Multimodal-Instruct</td>
+              <td style="padding: 10px; text-align: center; color: #666;">5.6B</td>
+              <td style="padding: 10px; text-align: center; color: #666;">2025/02</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748; border-left: 2px solid #e2e8f0;">40.0</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">20.1</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">9.2</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">11.6</td>
+            </tr>
+            <tr style="background: #fff;">
+              <td style="padding: 10px 15px; font-weight: 500; color: #2d3748; text-align: right;">SmolVLM-Instruct</td>
+              <td style="padding: 10px; text-align: center; color: #666;">0.26B</td>
+              <td style="padding: 10px; text-align: center; color: #666;">2024/11</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748; border-left: 2px solid #e2e8f0;">38.9</td>
+              <td style="padding: 10px; text-align: center; color: #666;">–</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">14.3</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">17.8</td>
+            </tr>
+            <tr style="background: #fafafa;">
+              <td style="padding: 10px 15px; font-weight: 500; color: #2d3748; text-align: right;">VILA-7B</td>
+              <td style="padding: 10px; text-align: center; color: #666;">7B</td>
+              <td style="padding: 10px; text-align: center; color: #666;">2024/01</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748; border-left: 2px solid #e2e8f0;">31.8</td>
+              <td style="padding: 10px; text-align: center; color: #666;">–</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">14.1</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">10.0</td>
+            </tr>
+            <tr style="background: #fff;">
+              <td style="padding: 10px 15px; font-weight: 500; color: #2d3748; text-align: right;">CogVLM2 Video</td>
+              <td style="padding: 10px; text-align: center; color: #666;">12B</td>
+              <td style="padding: 10px; text-align: center; color: #666;">2024/05</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748; border-left: 2px solid #e2e8f0;">28.5</td>
+              <td style="padding: 10px; text-align: center; color: #666;">–</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">9.5</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">26.4</td>
+            </tr>
+            <tr style="background: #fafafa;">
+              <td style="padding: 10px 15px; font-weight: 500; color: #2d3748; text-align: right;">Phi-3-Mini-128K-Instruct-3.8B</td>
+              <td style="padding: 10px; text-align: center; color: #666;">3.8B</td>
+              <td style="padding: 10px; text-align: center; color: #666;">2024/04</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748; border-left: 2px solid #e2e8f0;">11.1</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">10.3</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">8.2</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">7.2</td>
+            </tr>
+            <tr style="background: #fff;">
+              <td style="padding: 10px 15px; font-weight: 500; color: #2d3748; text-align: right;">LLaVA-13B</td>
+              <td style="padding: 10px; text-align: center; color: #666;">13B</td>
+              <td style="padding: 10px; text-align: center; color: #666;">2023/10</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748; border-left: 2px solid #e2e8f0;">20.2</td>
+              <td style="padding: 10px; text-align: center; color: #666;">–</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">13.9</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">14.4</td>
+            </tr>
+            <tr style="background: #fafafa;">
+              <td style="padding: 10px 15px; font-weight: 500; color: #2d3748; text-align: right;">MiniCPM-V 4.5-8B</td>
+              <td style="padding: 10px; text-align: center; color: #666;">8B</td>
+              <td style="padding: 10px; text-align: center; color: #666;">2025/05</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748; border-left: 2px solid #e2e8f0;">29.3</td>
+              <td style="padding: 10px; text-align: center; color: #666;">–</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">19.1</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">24.1</td>
+            </tr>
+            <tr style="background: #fff;">
+              <td style="padding: 10px 15px; font-weight: 500; color: #2d3748; text-align: right;">Fuyu-8B</td>
+              <td style="padding: 10px; text-align: center; color: #666;">8B</td>
+              <td style="padding: 10px; text-align: center; color: #666;">2023/10</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748; border-left: 2px solid #e2e8f0;">14.3</td>
+              <td style="padding: 10px; text-align: center; color: #666;">–</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">9.0</td>
+              <td style="padding: 10px; text-align: center; color: #2d3748;">21.1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="has-text-centered" style="font-size: 0.85rem; color: #666; margin-top: 0.5rem;">
+        <strong>Table 2.</strong> Input faithfulness analysis across different experimental conditions.
+      </p>
+      
+      <!-- Takeaway Box -->
+      <div style="background: linear-gradient(135deg, rgba(11,61,62,0.08) 0%, rgba(229,76,45,0.08) 100%); border-left: 4px solid rgb(11,61,62); border-radius: 8px; padding: 1.2rem 1.5rem; margin-top: 1.5rem;">
+        <p style="margin: 0; color: rgb(0,0,0);">
+          <strong style="color: rgb(11,61,62);">💡 Takeaway:</strong> Current VLMs are not input-faithful quantitative reasoners: visual evidence and explicit priors act as soft hints, while memorized world knowledge dominates final predictions.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Dissecting Quantitative Reasoning Section -->
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{park2021nerfies,
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
+    <pre><code>@article{li2026quantiphy,
+  author    = {Li, Puyin and Xiang, Tiange and Mao, Ella and Wei, Shirley and Chen, Xinye and Masood, Adnan and Li, Fei-Fei and Adeli, Ehsan},
+  title     = {QuantiPhy: A Quantitative Benchmark Evaluating Physical Reasoning Abilities of Vision-Language Models},
+  journal   = {},
+  year      = {2026},
 }</code></pre>
   </div>
 </section>
