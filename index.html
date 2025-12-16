@@ -755,6 +755,26 @@ function toggleAnswer(answerId, element) {
       <p class="has-text-justified">
         We evaluate three core tasks—size, velocity, and acceleration estimation—using a unified protocol across simulated, laboratory, and in-the-wild videos. Human performance is measured under the same setup, providing a reference point for visually grounded quantitative reasoning.
       </p>
+      
+      <!-- Explain Box: Kinematic Inference Task -->
+      <div style="background: linear-gradient(135deg, rgba(11,61,62,0.08) 0%, rgba(229,76,45,0.08) 100%); border-left: 4px solid rgb(11,61,62); border-radius: 8px; padding: 1.5rem; margin-top: 1.5rem; margin-bottom: 1.5rem;">
+        <h3 style="color: rgb(11,61,62); margin-bottom: 1rem; font-size: 1.1rem;">
+          🧠 <strong>Explain Box: Kinematic Inference Task</strong>
+        </h3>
+        <p class="has-text-justified" style="color: rgb(0,0,0); margin-bottom: 1rem;">
+          Given a video, the model is provided with a single physical prior in world units for a source object (e.g., \(S^{\text{world}}\), \(V_t^{\text{world}}\), \(A_t^{\text{world}}\)).
+        </p>
+        <p class="has-text-justified" style="color: rgb(0,0,0); margin-bottom: 1rem;">
+          From the corresponding pixel-space measurement, the model must infer a pixel-to-world scale \(\gamma\), such that
+        </p>
+        <p style="text-align: center; margin: 1rem 0;">
+          \[S^{\text{world}} = \gamma S^{\text{pixel}}, \quad V_t^{\text{world}} = \gamma V_t^{\text{pixel}}, \quad A_t^{\text{world}} = \gamma A_t^{\text{pixel}}.\]
+        </p>
+        <p class="has-text-justified" style="color: rgb(0,0,0); margin-top: 1rem; margin-bottom: 0;">
+          Using this scale, the model then quantitatively infers a target kinematic property in world coordinates.
+        </p>
+      </div>
+      
       <p class="has-text-justified">
         To measure performance, we use <strong>Mean Relative Accuracy (MRA)</strong>, a metric designed for quantitative physical inference. For a prediction \(\hat{y}\) and ground-truth value \(y\), we compute the relative error \(|\hat{y} - y| / |y|\). A prediction is considered correct under a confidence threshold \(\theta\) if
       </p>
