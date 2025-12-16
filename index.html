@@ -1120,7 +1120,7 @@ function toggleAnswer(answerId, element) {
           </div>
         </div>
   
-  <div class="container" style="margin-top: 1rem; max-width: 1400px; padding: 0 2rem;">
+  <div class="container" style="margin-top: 1rem; max-width: 1200px; padding: 0 2rem;">
     
     <!-- Case Study Slider -->
     <div class="case-slider-wrapper" style="margin: 1rem 0; background-color: white; padding: 1.5rem 2rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
@@ -1132,104 +1132,112 @@ function toggleAnswer(answerId, element) {
         </h3>
       </div>
       
-      <div class="case-slider-container" style="position: relative; overflow: hidden; padding: 0 3rem;">
+      <div class="case-slider-container" style="position: relative; overflow: hidden;">
         <div id="case-slider" style="display: flex; transition: transform 0.4s ease;">
           
           <!-- Case 1 -->
-          <div class="case-slide" style="min-width: 100%; box-sizing: border-box; display: flex; gap: 2rem; align-items: center; padding: 0 4rem;">
-            <div style="flex: 1; max-width: 45%;">
-              <img src="./static/images/case1.png" alt="Case 1" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            </div>
-            <div style="flex: 1; padding: 0.5rem 0;">
-              <div style="background: linear-gradient(135deg, rgb(11,61,62) 0%, rgb(20,90,92) 100%); color: white; padding: 0.5rem 1rem; border-radius: 6px; display: inline-block; margin-bottom: 1rem;">
-                <strong style="font-size: 1.1rem; color: white;">Case 1 — When Visual Measurement Works</strong>
+          <div class="case-slide" style="min-width: 100%; box-sizing: border-box; display: flex; justify-content: center; padding: 0;">
+            <div style="display: flex; gap: 2rem; align-items: center; max-width: 960px; width: 100%;">
+              <div style="flex: 1; max-width: 45%;">
+                <img src="./static/images/case1.png" alt="Case 1" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
               </div>
-              <p style="color: rgb(0,0,0); line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.95rem;">
-                <strong style="color: rgb(11,61,62);">GPT-5.1 can infer kinematic quantities when visual cues are clean and well-scaled.</strong>
-              </p>
-              <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
-                Given a realistic object size and clear motion across frames, the model explicitly estimates pixel displacement, maps it to real-world units, and computes speed or dimensions proportionally.
-              </p>
-              <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
-                In these cases, predictions closely match ground truth, suggesting genuine use of visual evidence rather than memorized priors.
-              </p>
-              <p style="color: rgb(229,76,45); line-height: 1.7; font-size: 0.9rem; font-style: italic; border-left: 3px solid rgb(229,76,45); padding-left: 0.8rem;">
-                This represents GPT-5.1's best-case behavior: explicit visual measurement followed by numerical reasoning.
-          </p>
-        </div>
-        </div>
+              <div style="flex: 1; padding: 0.5rem 0;">
+                <div style="background: linear-gradient(135deg, rgb(11,61,62) 0%, rgb(20,90,92) 100%); color: white; padding: 0.5rem 1rem; border-radius: 6px; display: inline-block; margin-bottom: 1rem;">
+                  <strong style="font-size: 1.1rem; color: white;">Case 1 — When Visual Measurement Works</strong>
+                </div>
+                <p style="color: rgb(0,0,0); line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.95rem;">
+                  <strong style="color: rgb(11,61,62);">GPT-5.1 can infer kinematic quantities when visual cues are clean and well-scaled.</strong>
+                </p>
+                <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
+                  Given a realistic object size and clear motion across frames, the model explicitly estimates pixel displacement, maps it to real-world units, and computes speed or dimensions proportionally.
+                </p>
+                <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
+                  In these cases, predictions closely match ground truth, suggesting genuine use of visual evidence rather than memorized priors.
+                </p>
+                <p style="color: rgb(229,76,45); line-height: 1.7; font-size: 0.9rem; font-style: italic; border-left: 3px solid rgb(229,76,45); padding-left: 0.8rem;">
+                  This represents GPT-5.1's best-case behavior: explicit visual measurement followed by numerical reasoning.
+                </p>
+              </div>
+            </div>
+          </div>
 
           <!-- Case 2 -->
-          <div class="case-slide" style="min-width: 100%; box-sizing: border-box; display: flex; gap: 2rem; align-items: center; padding: 0 4rem;">
-            <div style="flex: 1; max-width: 45%;">
-              <img src="./static/images/case2.png" alt="Case 2" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-      </div>
-            <div style="flex: 1; padding: 0.5rem 0;">
-              <div style="background: linear-gradient(135deg, rgb(11,61,62) 0%, rgb(20,90,92) 100%); color: white; padding: 0.5rem 1rem; border-radius: 6px; display: inline-block; margin-bottom: 1rem;">
-                <strong style="font-size: 1.1rem; color: white;">Case 2 — Sensitivity to Unrealistic Scale</strong>
-    </div>
-              <p style="color: rgb(0,0,0); line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.95rem;">
-                <strong style="color: rgb(11,61,62);">Unrealistic physical scales can derail otherwise correct visual reasoning.</strong>
-              </p>
-              <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
-                When object dimensions are inflated to implausible values (e.g., a car length of 5670 m), GPT-5.1 often performs arithmetic consistently but fails to detect scale violations.
-              </p>
-              <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
-                The model propagates the incorrect assumption through its calculations, leading to extreme numerical errors in downstream kinematic estimates.
-              </p>
-              <p style="color: rgb(229,76,45); line-height: 1.7; font-size: 0.9rem; font-style: italic; border-left: 3px solid rgb(229,76,45); padding-left: 0.8rem;">
-                Visual reasoning remains internally consistent, but lacks physical plausibility checks.
-              </p>
+          <div class="case-slide" style="min-width: 100%; box-sizing: border-box; display: flex; justify-content: center; padding: 0;">
+            <div style="display: flex; gap: 2rem; align-items: center; max-width: 960px; width: 100%;">
+              <div style="flex: 1; max-width: 45%;">
+                <img src="./static/images/case2.png" alt="Case 2" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+              </div>
+              <div style="flex: 1; padding: 0.5rem 0;">
+                <div style="background: linear-gradient(135deg, rgb(11,61,62) 0%, rgb(20,90,92) 100%); color: white; padding: 0.5rem 1rem; border-radius: 6px; display: inline-block; margin-bottom: 1rem;">
+                  <strong style="font-size: 1.1rem; color: white;">Case 2 — Sensitivity to Unrealistic Scale</strong>
+                </div>
+                <p style="color: rgb(0,0,0); line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.95rem;">
+                  <strong style="color: rgb(11,61,62);">Unrealistic physical scales can derail otherwise correct visual reasoning.</strong>
+                </p>
+                <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
+                  When object dimensions are inflated to implausible values (e.g., a car length of 5670 m), GPT-5.1 often performs arithmetic consistently but fails to detect scale violations.
+                </p>
+                <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
+                  The model propagates the incorrect assumption through its calculations, leading to extreme numerical errors in downstream kinematic estimates.
+                </p>
+                <p style="color: rgb(229,76,45); line-height: 1.7; font-size: 0.9rem; font-style: italic; border-left: 3px solid rgb(229,76,45); padding-left: 0.8rem;">
+                  Visual reasoning remains internally consistent, but lacks physical plausibility checks.
+                </p>
+              </div>
             </div>
           </div>
           
           <!-- Case 3 -->
-          <div class="case-slide" style="min-width: 100%; box-sizing: border-box; display: flex; gap: 2rem; align-items: center; padding: 0 4rem;">
-            <div style="flex: 1; max-width: 45%;">
-              <img src="./static/images/case3.png" alt="Case 3" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            </div>
-            <div style="flex: 1; padding: 0.5rem 0;">
-              <div style="background: linear-gradient(135deg, rgb(11,61,62) 0%, rgb(20,90,92) 100%); color: white; padding: 0.5rem 1rem; border-radius: 6px; display: inline-block; margin-bottom: 1rem;">
-                <strong style="font-size: 1.1rem; color: white;">Case 3 — Guessing Without Visual Evidence</strong>
+          <div class="case-slide" style="min-width: 100%; box-sizing: border-box; display: flex; justify-content: center; padding: 0;">
+            <div style="display: flex; gap: 2rem; align-items: center; max-width: 960px; width: 100%;">
+              <div style="flex: 1; max-width: 45%;">
+                <img src="./static/images/case3.png" alt="Case 3" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
               </div>
-              <p style="color: rgb(0,0,0); line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.95rem;">
-                <strong style="color: rgb(11,61,62);">When visual input is removed, GPT-5.1 falls back to prior-driven guesses.</strong>
-              </p>
-              <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
-                With the video ablated, the model no longer has access to motion cues and instead produces values based on typical real-world expectations (e.g., "reasonable" speeds or object widths).
-              </p>
-              <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
-                These guesses often deviate substantially from ground truth and show little task-specific adaptation.
-              </p>
-              <p style="color: rgb(229,76,45); line-height: 1.7; font-size: 0.9rem; font-style: italic; border-left: 3px solid rgb(229,76,45); padding-left: 0.8rem;">
-                Without visual grounding, numerical outputs reflect priors rather than inference.
-              </p>
+              <div style="flex: 1; padding: 0.5rem 0;">
+                <div style="background: linear-gradient(135deg, rgb(11,61,62) 0%, rgb(20,90,92) 100%); color: white; padding: 0.5rem 1rem; border-radius: 6px; display: inline-block; margin-bottom: 1rem;">
+                  <strong style="font-size: 1.1rem; color: white;">Case 3 — Guessing Without Visual Evidence</strong>
+                </div>
+                <p style="color: rgb(0,0,0); line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.95rem;">
+                  <strong style="color: rgb(11,61,62);">When visual input is removed, GPT-5.1 falls back to prior-driven guesses.</strong>
+                </p>
+                <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
+                  With the video ablated, the model no longer has access to motion cues and instead produces values based on typical real-world expectations (e.g., "reasonable" speeds or object widths).
+                </p>
+                <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
+                  These guesses often deviate substantially from ground truth and show little task-specific adaptation.
+                </p>
+                <p style="color: rgb(229,76,45); line-height: 1.7; font-size: 0.9rem; font-style: italic; border-left: 3px solid rgb(229,76,45); padding-left: 0.8rem;">
+                  Without visual grounding, numerical outputs reflect priors rather than inference.
+                </p>
+              </div>
             </div>
           </div>
           
           <!-- Case 4 -->
-          <div class="case-slide" style="min-width: 100%; box-sizing: border-box; display: flex; gap: 2rem; align-items: center; padding: 0 4rem;">
-            <div style="flex: 1; max-width: 45%;">
-              <img src="./static/images/case4.png" alt="Case 4" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            </div>
-            <div style="flex: 1; padding: 0.5rem 0;">
-              <div style="background: linear-gradient(135deg, rgb(11,61,62) 0%, rgb(20,90,92) 100%); color: white; padding: 0.5rem 1rem; border-radius: 6px; display: inline-block; margin-bottom: 1rem;">
-                <strong style="font-size: 1.1rem; color: white;">Case 4 — Prior Dominance</strong>
+          <div class="case-slide" style="min-width: 100%; box-sizing: border-box; display: flex; justify-content: center; padding: 0;">
+            <div style="display: flex; gap: 2rem; align-items: center; max-width: 960px; width: 100%;">
+              <div style="flex: 1; max-width: 45%;">
+                <img src="./static/images/case4.png" alt="Case 4" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
               </div>
-              <p style="color: rgb(0,0,0); line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.95rem;">
-                <strong style="color: rgb(11,61,62);">For acceleration-related tasks, prior knowledge can override visual evidence.</strong>
-              </p>
-              <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
-                In scenarios involving falling objects, GPT-5.1 frequently outputs values close to canonical constants (e.g., gravitational acceleration), even when the video implies different kinematic behavior.
-              </p>
-              <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
-                This pattern suggests reliance on memorized physics facts instead of extracting acceleration from observed motion.
-              </p>
-              <p style="color: rgb(229,76,45); line-height: 1.7; font-size: 0.9rem; font-style: italic; border-left: 3px solid rgb(229,76,45); padding-left: 0.8rem;">
-                Correct-looking numbers do not necessarily imply visually grounded reasoning.
-          </p>
-        </div>
-      </div>
+              <div style="flex: 1; padding: 0.5rem 0;">
+                <div style="background: linear-gradient(135deg, rgb(11,61,62) 0%, rgb(20,90,92) 100%); color: white; padding: 0.5rem 1rem; border-radius: 6px; display: inline-block; margin-bottom: 1rem;">
+                  <strong style="font-size: 1.1rem; color: white;">Case 4 — Prior Dominance</strong>
+                </div>
+                <p style="color: rgb(0,0,0); line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.95rem;">
+                  <strong style="color: rgb(11,61,62);">For acceleration-related tasks, prior knowledge can override visual evidence.</strong>
+                </p>
+                <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
+                  In scenarios involving falling objects, GPT-5.1 frequently outputs values close to canonical constants (e.g., gravitational acceleration), even when the video implies different kinematic behavior.
+                </p>
+                <p style="color: #444; line-height: 1.7; margin-bottom: 0.8rem; font-size: 0.9rem;">
+                  This pattern suggests reliance on memorized physics facts instead of extracting acceleration from observed motion.
+                </p>
+                <p style="color: rgb(229,76,45); line-height: 1.7; font-size: 0.9rem; font-style: italic; border-left: 3px solid rgb(229,76,45); padding-left: 0.8rem;">
+                  Correct-looking numbers do not necessarily imply visually grounded reasoning.
+                </p>
+              </div>
+            </div>
+          </div>
           
     </div>
         <!-- Navigation Arrows -->
