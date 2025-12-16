@@ -23,7 +23,7 @@
     <a href="https://ai.stanford.edu/~xtiange/" target="_blank">Tiange Xiang</a><sup>1*</sup>, </span>
     <a href="" target="_blank">Ella Mao</a><sup>1*</sup>,</span>
     <a href="www.linkedin.com/in/shirley-jinshan-wei-611545328" target="_blank">Shirley Wei</a><sup>1</sup>,</span>
-    <a href="" target="_blank">Xinye Chen</a><sup>1</sup>,</span>
+    <a href="www.paprikachen.com" target="_blank">Xinye Chen</a><sup>1</sup>,</span>
     <a href="https://www.ust.com/en/boundless/boundless-thinkers/adnan-masood-phd" target="_blank">Adnan Masood</a><sup>2</sup>,</span>
     <a href="https://profiles.stanford.edu/fei-fei-li" target="_blank">Li Fei-Fei</a><sup>1†</sup>,</span>
     <a href="https://stanford.edu/~eadeli/" target="_blank">Ehsan Adeli</a><sup>1†</sup>,</span>
