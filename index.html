@@ -40,6 +40,9 @@
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
   <script src="./static/js/switch_videos.js"></script>
+  <!-- MathJax for mathematical formulas -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -547,21 +550,64 @@ function toggleAnswer(answerId, element) {
   <div style="width: 100%; padding: 0;">
     <div class="has-text-centered">
       <h2 class="title is-3" style="color: rgb(0,0,0);"><img src="./static/images/QuantiPhy_logo_pure.png" alt="QuantiPhy Logo" style="height: 1.5em; vertical-align: middle; margin-right: 0.5rem;">QuantiPhy Dataset</h2>
-    </div>
-  </div>
-  <div class="container is-max-desktop">
-    <img src="./static/images/data_cat.png" alt="QuantiPhy Dataset" style="max-width: 90%; display: block; margin: 1.5rem auto 0 auto;">
-  </div>
-  
-  <div class="container is-max-desktop" style="padding: 1.5rem; padding-bottom: 0.5rem;">
-    <p class="has-text-justified" style="font-size: 0.95rem; margin-bottom: 0;">
-      <strong>Figure 2.</strong> Sample examples from <span class="quantiphy">QuantiPhy</span>, illustrating the four core task combinations defined by <em>Dimensionality</em> {2D, 3D} and <em>Physical Prior</em> {Static, Dynamic}, as described in the Dataset Overview section. Our collected data is diverse in nature, and each video is paired with multiple (prior, question, ground truth) triplets. Please see the supplementary materials for more data examples.
-    </p>
-  </div>
-  
+        </div>
+      </div>
   <!-- Dataset Overview Subsection -->
-  <div class="container is-max-desktop" style="margin-top: 2rem;">
-    <h1 class="title is-4" style="color: rgb(0,0,0);">Dataset Overview</h1>
+  <div class="container is-max-desktop" style="margin-top: 1rem;">
+    
+    <!-- Image Slider -->
+    <div class="slider-wrapper" style="margin: 1rem 0; background-color: white; padding: 1rem; border-radius: 8px;">
+      <div class="slider-container" style="position: relative; overflow: hidden;">
+        <div id="dataset-slider" style="display: flex; transition: transform 0.3s ease; align-items: center;">
+          <div class="slide" style="min-width: 100%; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <img src="./static/images/data_cat.png" alt="QuantiPhy Dataset Examples" style="max-width: 90%; display: block;">
+            <p class="has-text-centered" style="font-size: 0.9rem; margin-top: 0.5rem; color: rgb(0,0,0);">
+              <strong>Figure 2.</strong> Sample examples from <span class="quantiphy">QuantiPhy</span>, illustrating the four core task combinations.
+            </p>
+    </div>
+          <div class="slide" style="min-width: 100%; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <img src="./static/images/data_overview.png" alt="QuantiPhy Data Overview" style="max-width: 75%; display: block;">
+            <p class="has-text-centered" style="font-size: 0.9rem; margin-top: 0.5rem; color: rgb(0,0,0);">
+              <strong>Figure 3.</strong> Dataset statistics overview.
+            </p>
+  </div>
+        </div>
+        <!-- Navigation Arrows -->
+        <button onclick="slideDataset(-1)" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); background: rgba(11,61,62,0.85); color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 5px; font-size: 1.2rem;">❮</button>
+        <button onclick="slideDataset(1)" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: rgba(11,61,62,0.85); color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 5px; font-size: 1.2rem;">❯</button>
+        </div>
+      <!-- Dots - outside overflow hidden -->
+      <div style="text-align: center; margin-top: 1rem;">
+        <span id="dot-0" onclick="goToSlide(0)" style="height: 12px; width: 12px; margin: 0 4px; background-color: rgb(11,61,62); border-radius: 50%; display: inline-block; cursor: pointer;"></span>
+        <span id="dot-1" onclick="goToSlide(1)" style="height: 12px; width: 12px; margin: 0 4px; background-color: #bbb; border-radius: 50%; display: inline-block; cursor: pointer;"></span>
+      </div>
+    </div>
+    
+    <h1 class="title is-4" style="color: rgb(0,0,0); margin-top: 1.5rem;">Dataset Overview</h1>
+    
+    <script>
+      let currentSlide = 0;
+      const totalSlides = 2;
+      
+      function slideDataset(direction) {
+        currentSlide += direction;
+        if (currentSlide < 0) currentSlide = totalSlides - 1;
+        if (currentSlide >= totalSlides) currentSlide = 0;
+        updateSlider();
+      }
+      
+      function goToSlide(index) {
+        currentSlide = index;
+        updateSlider();
+      }
+      
+      function updateSlider() {
+        document.getElementById('dataset-slider').style.transform = `translateX(-${currentSlide * 100}%)`;
+        for (let i = 0; i < totalSlides; i++) {
+          document.getElementById(`dot-${i}`).style.backgroundColor = i === currentSlide ? 'rgb(11,61,62)' : '#bbb';
+        }
+      }
+    </script>
     <div class="content" style="color: rgb(0,0,0);">
       <p class="has-text-justified">
         <strong><span class="quantiphy">QuantiPhy</span></strong> introduces a rigorous benchmark for evaluating <strong>quantitative physical reasoning</strong> in Vision-Language Models. Unlike traditional VQA tasks that focus on qualitative descriptions, QuantiPhy challenges models to perform precise numerical inference grounded in physical laws.
@@ -598,8 +644,51 @@ function toggleAnswer(answerId, element) {
           </p>
         </li>
       </ul>
-    </div>
-  </div>
+        </div>
+          </div>
+  
+  <!-- Dataset Construction Subsection -->
+  <div class="container is-max-desktop" style="margin-top: 2rem;">
+    <img src="./static/images/data_construction.png" alt="Dataset Construction Pipeline" style="max-width: 100%; display: block; margin: 0 auto 1.5rem auto; border-radius: 12px;">
+    <h1 class="title is-4" style="color: rgb(0,0,0);">Dataset Construction</h1>
+    <div class="content" style="color: rgb(0,0,0);">
+      <p class="has-text-justified">
+        <strong><span class="quantiphy">QuantiPhy</span></strong> is built from four complementary data sources, each designed to probe quantitative physical reasoning under different visual conditions. For every video, we segment object trajectories and annotate size, velocity, and acceleration using source-appropriate, physically grounded procedures.
+      </p>
+      
+      <ul style="list-style-type: none; padding-left: 0; margin-top: 0.75rem;">
+        <li style="margin-bottom: 0.4rem;">
+          <strong>🔧 Simulation (Fully Controlled)</strong>
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+            <li><strong>Collection:</strong> Physically grounded Blender simulations with explicitly controlled object properties and motions</li>
+            <li><strong>Segmentation:</strong> Automatic object-level segmentation from the simulation engine</li>
+            <li><strong>Annotation:</strong> Exact ground-truth physical quantities directly obtained from simulation parameters</li>
+            <li><strong>Key advantage:</strong> Enables precise causal and counterfactual interventions.</li>
+          </ul>
+        </li>
+        
+        <li style="margin-bottom: 0.4rem;">
+          <strong>🧪 Laboratory (Measured Reality)</strong>
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+            <li><strong>Collection:</strong> Multi-camera recordings of real objects in motion under calibrated setups</li>
+            <li><strong>Segmentation:</strong> Frame-level object segmentation via semi-automatic pipelines with manual verification</li>
+            <li><strong>Annotation:</strong> Physical quantities computed from measured trajectories and known object dimensions</li>
+            <li><strong>Key advantage:</strong> Provides real-world grounding with reliable physical measurements.</li>
+          </ul>
+        </li>
+        
+        <li style="margin-bottom: 0.25rem;">
+          <strong>🌍 Internet (In-the-Wild)</strong>
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+            <li><strong>Collection:</strong> Curated real-world videos with visible, trackable object motion</li>
+            <li><strong>Segmentation:</strong> Manual and model-assisted object segmentation under diverse visual conditions</li>
+            <li><strong>Annotation:</strong> Expert annotations constrained by visual evidence and physical plausibility</li>
+            <li><strong>Key advantage:</strong> Tests robustness under natural noise, clutter, and ambiguity.</li>
+          </ul>
+        </li>
+      </ul>
+        </div>
+        </div>
     
     <!-- Figure with caption -->
     <!-- <figure style="margin: 1.5rem 0;">
@@ -609,146 +698,364 @@ function toggleAnswer(answerId, element) {
         <!-- Add your figure caption here -->
       <!-- </figcaption>
     </figure> -->
-  </div>
+      </div>
 </section>
 <!-- End QuantiPhy Dataset Section -->
 
-<section class="section">
-  <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
-
-      <!-- Visual Effects. -->
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
-          <p>
-            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
-            would be impossible without nerfies since it would require going through a wall.
+<!-- Evaluation on QuantiPhy Section -->
+<section class="section" style="background-color: white;">
+  <div style="width: 100%; padding: 0;">
+    <div class="has-text-centered">
+      <h2 class="title is-3" style="color: rgb(0,0,0);"><img src="./static/images/QuantiPhy_logo_pure.png" alt="QuantiPhy Logo" style="height: 1.5em; vertical-align: middle; margin-right: 0.5rem;">Evaluation on QuantiPhy</h2>
+    </div>
+  </div>
+  
+  <!-- Evaluation Setup Subsection -->
+  <div class="container is-max-desktop" style="margin-top: 1rem;">
+    <h1 class="title is-4" style="color: rgb(0,0,0);">Evaluation Setup</h1>
+    <div class="content" style="color: rgb(0,0,0);">
+      <p class="has-text-justified">
+        <strong><span class="quantiphy">QuantiPhy</span></strong> evaluates whether vision–language models can infer quantitative physical properties from visual evidence, rather than producing plausible numerical guesses. Each evaluation instance consists of a short video paired with a natural-language question, and models are required to output a single continuous numerical value, such as object size, velocity, or acceleration. All tasks are open-ended and avoid multiple-choice formats, preventing shortcut strategies based on memorization or priors.
+      </p>
+      <p class="has-text-justified">
+        We evaluate three core tasks—size, velocity, and acceleration estimation—using a unified protocol across simulated, laboratory, and in-the-wild videos. Human performance is measured under the same setup, providing a reference point for visually grounded quantitative reasoning.
+      </p>
+      <p class="has-text-justified">
+        To measure performance, we use <strong>Mean Relative Accuracy (MRA)</strong>, a metric designed for quantitative physical inference. For a prediction \(\hat{y}\) and ground-truth value \(y\), we compute the relative error \(|\hat{y} - y| / |y|\). A prediction is considered correct under a confidence threshold \(\theta\) if
+      </p>
+      <p style="text-align: center; margin: 1rem 0;">
+        \[\frac{|\hat{y} - y|}{|y|} < 1 - \theta,\]
+      </p>
+      <p class="has-text-justified">
+        where \(\theta \in \{0.5, 0.55, \ldots, 0.95\}\). The final MRA score is the average accuracy across all thresholds:
+      </p>
+      <p style="text-align: center; margin: 1rem 0;">
+        \[\text{MRA} = \frac{1}{|C|} \sum_{\theta \in C} \mathbb{1}\left(\frac{|\hat{y} - y|}{|y|} < 1 - \theta\right),\]
+      </p>
+      <p class="has-text-justified">
+        with \(C\) denoting the set of confidence thresholds.
+      </p>
+      <p class="has-text-justified">
+        By rewarding approximate correctness rather than exact numerical matches, MRA provides a smoother and more informative measure of quantitative physical reasoning under real-world visual uncertainty.
           </p>
-          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/dollyzoom-stacked.mp4"
-                    type="video/mp4">
-          </video>
         </div>
-      </div>
-      <!--/ Visual Effects. -->
-
-      <!-- Matting. -->
-      <div class="column">
-        <h2 class="title is-3">Matting</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
-            </p>
-            <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/matting.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-
-        </div>
+    
+    <!-- Explain Box -->
+    <div style="background: linear-gradient(135deg, rgba(11,61,62,0.08) 0%, rgba(229,76,45,0.08) 100%); border-left: 4px solid rgb(11,61,62); border-radius: 8px; padding: 1.5rem; margin-top: 1.5rem;">
+      <h3 style="color: rgb(11,61,62); margin-bottom: 1rem; font-size: 1.1rem;">
+        🧠 <strong>Explain Box: Why Mean Relative Accuracy (MRA)?</strong>
+      </h3>
+      <p class="has-text-justified" style="color: rgb(0,0,0); margin-bottom: 1rem;">
+        <strong>Exact numerical matching is unrealistic for physical reasoning.</strong> Small perceptual differences in video can lead to meaningful but imperfect numerical estimates, even for humans.
+      </p>
+      <p class="has-text-justified" style="color: rgb(0,0,0); margin-bottom: 0.75rem;">
+        <strong>Mean Relative Accuracy (MRA)</strong> addresses this by:
+      </p>
+      <ul style="margin-left: 1.5rem; color: rgb(0,0,0);">
+        <li>Measuring <strong>relative error</strong> rather than absolute error</li>
+        <li>Assigning <strong>partial credit</strong> for approximately correct predictions</li>
+        <li>Avoiding <strong>brittle pass/fail judgments</strong> on noisy visual data</li>
+      </ul>
+      <p class="has-text-justified" style="color: rgb(0,0,0); margin-top: 1rem; margin-bottom: 0;">
+        As a result, MRA better reflects how physical quantities are inferred in practice and provides a smoother, more informative signal for comparing models.
+      </p>
       </div>
     </div>
-    <!--/ Matting. -->
-
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
-
-        <!-- Interpolating. -->
-        <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
-          <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
-          </p>
-        </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
-            </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
-          </div>
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
-          </div>
-        </div>
-        <br/>
-        <!--/ Interpolating. -->
-
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
-        <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="./static/videos/replay.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <!--/ Re-rendering. -->
-
-      </div>
+  
+  <!-- QuantiPhy Leaderboard Subsection -->
+  <div class="container is-max-desktop" style="margin-top: 2.5rem;">
+    <h1 class="title is-4" style="color: rgb(0,0,0);">QuantiPhy Leaderboard <img src="./static/images/QuantiPhy_logo.png" alt="" style="height: 1.2em; vertical-align: middle; margin-left: 0.3rem;"></h1>
+    
+    <p class="has-text-justified" style="color: rgb(0,0,0); margin-bottom: 1rem;">
+      To include your model in the leaderboard, please email <a href="mailto:puyinli@stanford.edu" style="color: rgb(229,76,45);">puyinli@stanford.edu</a> with evaluation logs and setups.
+    </p>
+    
+    <style>
+      .quantiphy-leaderboard {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        background: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        font-size: 14px;
+        margin-bottom: 1rem;
+      }
+      .quantiphy-leaderboard thead {
+        background: rgb(11,61,62);
+        color: white;
+      }
+      .quantiphy-leaderboard th {
+        padding: 12px 10px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 13px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: white;
+      }
+      .quantiphy-leaderboard td {
+        padding: 10px 8px;
+        border-bottom: 1px solid #e2e8f0;
+        color: #4a5568;
+        text-align: center;
+      }
+      .quantiphy-leaderboard tbody tr:hover {
+        background-color: #f7fafc;
+      }
+      .quantiphy-leaderboard td:first-child {
+        font-weight: 600;
+        text-align: right;
+        color: #2d3748;
+        padding-right: 15px;
+      }
+      .quantiphy-leaderboard .section-header {
+        background-color: rgba(11,61,62,0.1);
+        font-weight: 700;
+        color: #2d3748;
+        font-size: 14px;
+        text-align: left;
+        padding: 10px 15px !important;
+      }
+      .quantiphy-leaderboard .section-header td {
+        text-align: left;
+        font-weight: 700;
+        font-style: italic;
+      }
+      .quantiphy-leaderboard .human-row {
+        background: rgba(229,76,45,0.08) !important;
+        font-weight: 600;
+      }
+      .quantiphy-leaderboard .human-row td {
+        border-top: 2px solid rgb(229,76,45);
+        border-bottom: 2px solid rgb(229,76,45);
+      }
+      .quantiphy-leaderboard .best-score {
+        font-weight: 700;
+        background-color: rgba(229,76,45,0.15);
+      }
+      .quantiphy-leaderboard .best-open {
+        font-weight: 700;
+        background-color: rgba(11,61,62,0.12);
+      }
+      .quantiphy-leaderboard tbody tr:nth-child(even):not(.section-header):not(.human-row) {
+        background-color: #fafafa;
+      }
+    </style>
+    
+    <div style="overflow-x: auto;">
+      <table class="quantiphy-leaderboard">
+        <thead>
+          <tr>
+            <th style="text-align: right;">Models</th>
+            <th>Size</th>
+            <th>Release</th>
+            <th colspan="4" style="border-bottom: 2px solid rgba(255,255,255,0.3);">Kinematic Categories</th>
+            <th>Avg.</th>
+          </tr>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>2S</th>
+            <th>2D</th>
+            <th>3S</th>
+            <th>3D</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Proprietary Models -->
+          <tr class="section-header">
+            <td colspan="8">Proprietary models</td>
+          </tr>
+          <tr>
+            <td>ChatGPT-5.1</td>
+            <td>–</td>
+            <td>2025/11</td>
+            <td class="best-score">46.1</td>
+            <td>56.1</td>
+            <td class="best-score">45.0</td>
+            <td class="best-score">58.1</td>
+            <td class="best-score">52.6</td>
+          </tr>
+          <tr>
+            <td>Gemini-2.5 Pro</td>
+            <td>–</td>
+            <td>2025/03</td>
+            <td>44.3</td>
+            <td class="best-score">57.3</td>
+            <td>41.8</td>
+            <td>53.6</td>
+            <td>49.3</td>
+          </tr>
+          <tr>
+            <td>Gemini-2.5 Flash</td>
+            <td>–</td>
+            <td>2025/03</td>
+            <td>39.9</td>
+            <td>53.0</td>
+            <td>40.6</td>
+            <td>56.2</td>
+            <td>47.4</td>
+          </tr>
+          <tr>
+            <td>ChatGPT-5</td>
+            <td>–</td>
+            <td>2025/04</td>
+            <td>36.4</td>
+            <td>34.9</td>
+            <td>24.7</td>
+            <td>32.9</td>
+            <td>32.2</td>
+          </tr>
+          <tr>
+            <td>Claude-4.5 Sonnet</td>
+            <td>–</td>
+            <td>2025/04</td>
+            <td>19.6</td>
+            <td>22.9</td>
+            <td>19.6</td>
+            <td>29.1</td>
+            <td>22.8</td>
+          </tr>
+          
+          <!-- Open-weight Models -->
+          <tr class="section-header">
+            <td colspan="8">Open-weight models</td>
+          </tr>
+          <tr>
+            <td>InternVL-3.5-30B</td>
+            <td>30B</td>
+            <td>2025/05</td>
+            <td class="best-open">36.7</td>
+            <td>45.4</td>
+            <td class="best-open">38.0</td>
+            <td class="best-open">41.6</td>
+            <td class="best-open">40.4</td>
+          </tr>
+          <tr>
+            <td>Qwen3-VL-Instruct-8B</td>
+            <td>8B</td>
+            <td>2025/04</td>
+            <td>26.0</td>
+            <td class="best-open">47.8</td>
+            <td>33.5</td>
+            <td>46.0</td>
+            <td>38.3</td>
+          </tr>
+          <tr>
+            <td>Molmo-7B</td>
+            <td>7B</td>
+            <td>2024/09</td>
+            <td>30.0</td>
+            <td>43.1</td>
+            <td>24.4</td>
+            <td>36.6</td>
+            <td>33.5</td>
+          </tr>
+          <tr>
+            <td>Phi-4-Multimodal-Instruct</td>
+            <td>5.6B</td>
+            <td>2025/02</td>
+            <td>33.3</td>
+            <td>42.3</td>
+            <td>23.2</td>
+            <td>27.9</td>
+            <td>31.7</td>
+          </tr>
+          <tr>
+            <td>SmolVLM-Instruct</td>
+            <td>0.26B</td>
+            <td>2024/11</td>
+            <td>31.6</td>
+            <td>34.4</td>
+            <td>19.8</td>
+            <td>27.8</td>
+            <td>28.4</td>
+          </tr>
+          <tr>
+            <td>VILA-7B</td>
+            <td>7B</td>
+            <td>2024/01</td>
+            <td>23.0</td>
+            <td>29.8</td>
+            <td>14.4</td>
+            <td>23.0</td>
+            <td>22.6</td>
+          </tr>
+          <tr>
+            <td>CogVLM2 Video</td>
+            <td>12B</td>
+            <td>2024/05</td>
+            <td>19.4</td>
+            <td>28.7</td>
+            <td>12.7</td>
+            <td>27.9</td>
+            <td>22.2</td>
+          </tr>
+          <tr>
+            <td>Phi-3-Mini-128K-Instruct-3.8B</td>
+            <td>3.8B</td>
+            <td>2024/04</td>
+            <td>17.3</td>
+            <td>14.7</td>
+            <td>19.2</td>
+            <td>18.5</td>
+            <td>17.4</td>
+          </tr>
+          <tr>
+            <td>LLaVA-13B</td>
+            <td>13B</td>
+            <td>2023/10</td>
+            <td>14.4</td>
+            <td>22.1</td>
+            <td>8.0</td>
+            <td>16.5</td>
+            <td>15.2</td>
+          </tr>
+          <tr>
+            <td>MiniCPM-V 4.5-8B</td>
+            <td>8B</td>
+            <td>2025/05</td>
+            <td>27.6</td>
+            <td>26.1</td>
+            <td>0.4</td>
+            <td>0.0</td>
+            <td>13.5</td>
+          </tr>
+          <tr>
+            <td>Fuyu-8B</td>
+            <td>8B</td>
+            <td>2023/10</td>
+            <td>9.5</td>
+            <td>14.7</td>
+            <td>9.5</td>
+            <td>16.2</td>
+            <td>12.5</td>
+          </tr>
+          
+          <!-- Human Baseline -->
+          <tr class="human-row">
+            <td>Human Baseline</td>
+            <td>–</td>
+            <td>–</td>
+            <td>50.0</td>
+            <td>59.1</td>
+            <td>55.2</td>
+            <td>57.9</td>
+            <td>55.6</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <!--/ Animation. -->
-
-
-    <!-- Concurrent Work. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Links</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            There's a lot of excellent work that was introduced around the same time as ours.
-          </p>
-          <p>
-            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
-          </p>
-          <p>
-            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
-            both use deformation fields to model non-rigid scenes.
-          </p>
-          <p>
-            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
-          </p>
-          <p>
-            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Concurrent Work. -->
-
+    
+    <p style="font-size: 0.85rem; color: #666; margin-top: 0.5rem;">
+      <strong>Note:</strong> Best proprietary model scores are highlighted in <span style="background-color: rgba(229,76,45,0.15); padding: 2px 6px; border-radius: 3px;">orange</span>, best open-weight model scores in <span style="background-color: rgba(11,61,62,0.12); padding: 2px 6px; border-radius: 3px;">teal</span>.
+    </p>
   </div>
 </section>
-
+<!-- End Evaluation on QuantiPhy Section -->
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
@@ -797,3 +1104,4 @@ function toggleAnswer(answerId, element) {
 
 </body>
 </html>
+
