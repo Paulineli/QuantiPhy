@@ -4,26 +4,23 @@
 
 <br />
 
-<a href="https://arxiv.org/abs/2412.14171" target="_blank">
+<a href="https://arxiv.org/pdf/2512.19526" target="_blank">
     <img alt="arXiv" src="https://img.shields.io/badge/arXiv-QuantiPhy-red?logo=arxiv" height="20" />
 </a>
-<a href="https://vision-x-nyu.github.io/thinking-in-space.github.io/" target="_blank">
+<a href="https://quantiphy.stanford.edu/" target="_blank">
     <img alt="Website" src="https://img.shields.io/badge/🌎_Website-QuantiPhy-blue.svg" height="20" />
 </a>
-<a href="https://huggingface.co/datasets/nyu-visionx/VSI-Bench" target="_blank">
-    <img alt="HF Dataset: VSI-Bench" src="https://img.shields.io/badge/%F0%9F%A4%97%20_Benchmark-QuantiPhy_validation-ffc107?color=ffc107&logoColor=white" height="20" />
-</a>
-<a href="https://huggingface.co/datasets/nyu-visionx/VSI-Bench" target="_blank">
-    <img alt="HF Dataset: VSI-Bench" src="https://img.shields.io/badge/%F0%9F%A4%97%20_Benchmark-QuantiPhy_full-ffc107?color=ffc107&logoColor=white" height="20" />
+<a href="https://huggingface.co/datasets/PaulineLi/QuantiPhy-validation" target="_blank">
+    <img alt="HF Dataset: QuantiPhy-validation" src="https://img.shields.io/badge/%F0%9F%A4%97%20_Benchmark-QuantiPhy_validation-ffc107?color=ffc107&logoColor=white" height="20" />
 </a>
 
 
 <div>
     <a href="https://www.linkedin.com/in/puyin-li-32709a299" target="_blank">Puyin Li</a><sup>1*</sup>,</span>
     <a href="https://ai.stanford.edu/~xtiange/" target="_blank">Tiange Xiang</a><sup>1*</sup>, </span>
-    <a href="" target="_blank">Ella Mao</a><sup>1*</sup>,</span>
-    <a href="www.linkedin.com/in/shirley-jinshan-wei-611545328" target="_blank">Shirley Wei</a><sup>1</sup>,</span>
-    <a href="www.paprikachen.com" target="_blank">Xinye Chen</a><sup>1</sup>,</span>
+    <a href="https://www.gsb.stanford.edu/programs/phd/academic-experience/students/ella-mao" target="_blank">Ella Mao</a><sup>1*</sup>,</span>
+    <a href="https://www.linkedin.com/in/shirley-jinshan-wei-611545328" target="_blank">Shirley Wei</a><sup>1</sup>,</span>
+    <a href="https://www.paprikachen.com" target="_blank">Xinye Chen</a><sup>1</sup>,</span>
     <a href="https://www.ust.com/en/boundless/boundless-thinkers/adnan-masood-phd" target="_blank">Adnan Masood</a><sup>2</sup>,</span>
     <a href="https://profiles.stanford.edu/fei-fei-li" target="_blank">Li Fei-Fei</a><sup>1†</sup>,</span>
     <a href="https://stanford.edu/~eadeli/" target="_blank">Ehsan Adeli</a><sup>1†</sup>,</span>
@@ -31,7 +28,7 @@
 
 <div>
     <sup>1</sup>Stanford University&emsp;
-    <sup>2</sup>UST Global&emsp;
+    <sup>2</sup>UST&emsp;
 </div>
 
 <div>
@@ -56,24 +53,35 @@ Ensure your directory is organized as follows:
 ```
 QuantiPhy/
 ├── evaluator.py              # Main evaluation script
-├── evaluate.sh               # Helper script to run evaluation
-├── quantiphy_validation.csv  # Ground truth file for QuantiPhy validation
+├── evaluate.sh               # The script to launch evaluation
 ├── model_outputs/            # Directory for model prediction CSVs
 │   ├── model_A.csv
 │   └── model_B.csv
+│   └── ...
 └── mra_results/              # Directory where results will be saved
 ```
 
-## Usage
+## Use case 1: Evaluation on QuantiPhy-validation
 
-1. **Prepare Model Outputs**: Place your model prediction CSV files in the `model_outputs/` directory. Each CSV file should contain at least the following columns:
+1. **Obtain Data**: Follow the instructions on our [HuggingFace page](https://huggingface.co/datasets/PaulineLi/QuantiPhy-validation) to download the necessary data needed for evaluating on QuantiPhy-validation:
+   * `validation_videos`: The folder contains videos in the validation set.
+   * `quantiphy_validation.csv`: Metadata, question, prior, and ground truth annotations in the validation set. Put the CSV file anywhere you like, but **remember to update the `gt_file` variable in `evaluate.sh`.**
+
+
+2. **Obtain Results**: For all items in the validation CSV file, run your VLM with the corresponding `question` and `prior` along with the linked video to obtain the results. The results should follow the same structure as the example output in `model_outputs/gpt-5.1.csv`.
+
+
+
+3. **Prepare Outputs**: Place your model prediction CSV files in the `model_outputs/` directory. Each CSV file should contain at least the following columns:
    - `video_id`
    - `question`
    - `parsed_value` (The numeric value extracted from the model's response)
    - `video_type` (Optional, used for categorization)
    - `inference_type` (Optional, used for categorization)
 
-2. **Run Evaluation**: Execute the provided shell script to start the evaluation:
+4. **Run Evaluation**: Execute the provided shell script to start the evaluation:
+
+   > **Note**: Please update `evaluate.sh` with your local paths before running evaluation.
 
    ```bash
    bash evaluate.sh
@@ -83,14 +91,6 @@ QuantiPhy/
    - Read all CSV files from `model_outputs/`.
    - Use `quantiphy_validation.csv` as the ground truth.
    - Save the aggregated results to `mra_results/all_model_results.csv`.
-
-### Custom Usage
-
-If you wish to use custom directories or a different ground truth file, you can run the python script directly:
-
-```bash
-python evaluator.py <input_dir> <output_dir> --gt_file <path_to_gt_csv>
-```
 
 ## Output
 
@@ -102,3 +102,17 @@ The evaluation results are saved in `mra_results/all_model_results.csv`. This CS
 - **mra_bg_***: MRA scores broken down by background type.
 - **mra_obj_***: MRA scores broken down by object number (single vs multiple).
 - **invalid_percentage**: Percentage of responses where a valid numeric value could not be parsed.
+
+
+## Citation
+
+If you find this work useful in your research or project, please cite:
+
+```bibtex
+@article{li2026quantiphy,
+  author    = {Li, Puyin and Xiang, Tiange and Mao, Ella and Wei, Shirley and Chen, Xinye and Masood, Adnan and Li, Fei-Fei and Adeli, Ehsan},
+  title     = {QuantiPhy: A Quantitative Benchmark Evaluating Physical Reasoning Abilities of Vision-Language Models},
+  journal   = {},
+  year      = {2025},
+}
+```
