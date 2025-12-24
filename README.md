@@ -109,10 +109,10 @@ The evaluation results are saved in `mra_results/all_model_results.csv`. This CS
 If you find this work useful in your research or project, please cite:
 
 ```bibtex
-@article{li2026quantiphy,
-  author    = {Li, Puyin and Xiang, Tiange and Mao, Ella and Wei, Shirley and Chen, Xinye and Masood, Adnan and Li, Fei-Fei and Adeli, Ehsan},
-  title     = {QuantiPhy: A Quantitative Benchmark Evaluating Physical Reasoning Abilities of Vision-Language Models},
-  journal   = {},
-  year      = {2025},
-}
+@article{li2025quantiphy,
+      title   = {QuantiPhy: A Quantitative Benchmark Evaluating Physical Reasoning Abilities of Vision-Language Models},
+      author  = {Li, Puyin and Xiang, Tiange and Mao, Ella and Wei, Shirley and Chen, Xinye and Masood, Adnan and Li, Fei-Fei and Adeli, Ehsan},
+      journal = {arXiv preprint arXiv:2512.19526},
+      year    = {2025}
+    }
 ```
