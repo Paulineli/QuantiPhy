@@ -2,6 +2,8 @@
 
 <h1><img src="assets/QuantiPhy_logo_pure.ico" width="3%"/> <i>QuantiPhy</i>:</br>A Quantitative Benchmark Evaluating Physical Reasoning Abilities</br> of Vision-Language Models</h1>
 
+<b>CVPR 2026</b>
+
 <br />
 
 <a href="https://arxiv.org/pdf/2512.19526" target="_blank">
@@ -18,8 +20,6 @@
 </a>
 
 <br />
-
-<b>CVPR 2026</b>
 
 
 <div>
