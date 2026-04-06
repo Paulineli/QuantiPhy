@@ -13,8 +13,11 @@
 <a href="https://openaccess.thecvf.com/CVPR2026" target="_blank">
     <img alt="CVPR 2026" src="https://img.shields.io/badge/CVPR-2026-4b44ce.svg" height="20" />
 </a>
+
+<br />
+
 <a href="https://huggingface.co/datasets/PaulineLi/QuantiPhy" target="_blank">
-    <img alt="HF Dataset: QuantiPhy" src="https://img.shields.io/badge/%F0%9F%A4%97%20_Benchmark-QuantiPhy_test-ffc107?color=ffc107&logoColor=white" height="20" />
+    <img alt="HF Dataset: QuantiPhy" src="https://img.shields.io/badge/%F0%9F%A4%97%20_Benchmark-QuantiPhy-ffc107?color=ffc107&logoColor=white" height="20" />
 </a>
 <a href="https://huggingface.co/datasets/PaulineLi/QuantiPhy-validation" target="_blank">
     <img alt="HF Dataset: QuantiPhy-validation" src="https://img.shields.io/badge/%F0%9F%A4%97%20_Benchmark-QuantiPhy_validation-ffc107?color=ffc107&logoColor=white" height="20" />
@@ -55,7 +58,7 @@ This repository contains the evaluation code for the **QuantiPhy** benchmark, as
 
 | Split | Link | Description |
 |-------|------|-------------|
-| **Test set** (3,373 QA pairs, 556 videos) | [PaulineLi/QuantiPhy](https://huggingface.co/datasets/PaulineLi/QuantiPhy) | Official test set — ground-truth answers withheld |
+| **QuantiPhy dataset** (3,373 QA pairs, 556 videos) | [PaulineLi/QuantiPhy](https://huggingface.co/datasets/PaulineLi/QuantiPhy) | Official test set — ground-truth answers withheld |
 | **Validation set** (159 QA pairs) | [PaulineLi/QuantiPhy-validation](https://huggingface.co/datasets/PaulineLi/QuantiPhy-validation) | Validation split with ground-truth answers for development and ablation |
 
 ## Directory Structure
@@ -158,10 +161,10 @@ The evaluation results are saved in `mra_results/all_model_results.csv`. This CS
 If you find this work useful in your research or project, please cite:
 
 ```bibtex
-@inproceedings{li2026quantiphy,
-      title     = {QuantiPhy: A Quantitative Benchmark Evaluating Physical Reasoning Abilities of Vision-Language Models},
-      author    = {Li, Puyin and Xiang, Tiange and Mao, Ella and Wei, Shirley and Chen, Xinye and Masood, Adnan and Li, Fei-Fei and Adeli, Ehsan},
-      booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-      year      = {2026}
+@article{li2025quantiphy,
+      title   = {QuantiPhy: A Quantitative Benchmark Evaluating Physical Reasoning Abilities of Vision-Language Models},
+      author  = {Li, Puyin and Xiang, Tiange and Mao, Ella and Wei, Shirley and Chen, Xinye and Masood, Adnan and Li, Fei-Fei and Adeli, Ehsan},
+      journal = {arXiv preprint arXiv:2512.19526},
+      year    = {2025}
     }
 ```
