@@ -10,18 +10,16 @@
 <a href="https://quantiphy.stanford.edu/" target="_blank">
     <img alt="Website" src="https://img.shields.io/badge/🌎_Website-QuantiPhy-blue.svg" height="20" />
 </a>
-<a href="https://openaccess.thecvf.com/CVPR2026" target="_blank">
-    <img alt="CVPR 2026" src="https://img.shields.io/badge/CVPR-2026-4b44ce.svg" height="20" />
-</a>
-
-<br />
-
 <a href="https://huggingface.co/datasets/PaulineLi/QuantiPhy" target="_blank">
     <img alt="HF Dataset: QuantiPhy" src="https://img.shields.io/badge/%F0%9F%A4%97%20_Benchmark-QuantiPhy-ffc107?color=ffc107&logoColor=white" height="20" />
 </a>
 <a href="https://huggingface.co/datasets/PaulineLi/QuantiPhy-validation" target="_blank">
     <img alt="HF Dataset: QuantiPhy-validation" src="https://img.shields.io/badge/%F0%9F%A4%97%20_Benchmark-QuantiPhy_validation-ffc107?color=ffc107&logoColor=white" height="20" />
 </a>
+
+<br />
+
+<b>CVPR 2026</b>
 
 
 <div>
@@ -58,7 +56,7 @@ This repository contains the evaluation code for the **QuantiPhy** benchmark, as
 
 | Split | Link | Description |
 |-------|------|-------------|
-| **QuantiPhy dataset** (3,373 QA pairs, 556 videos) | [PaulineLi/QuantiPhy](https://huggingface.co/datasets/PaulineLi/QuantiPhy) | Official test set — ground-truth answers withheld |
+| **QuantiPhy dataset** (3,373 QA pairs, 556 videos) | [PaulineLi/QuantiPhy](https://huggingface.co/datasets/PaulineLi/QuantiPhy) | Official full dataset — ground-truth answers withheld |
 | **Validation set** (159 QA pairs) | [PaulineLi/QuantiPhy-validation](https://huggingface.co/datasets/PaulineLi/QuantiPhy-validation) | Validation split with ground-truth answers for development and ablation |
 
 ## Directory Structure
