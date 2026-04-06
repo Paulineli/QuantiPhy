@@ -1,0 +1,3 @@
+video_id,video_type,inference_type,question,ground_truth_prior,prior_used,prior_value,method,zero_shot_version,run,raw_response,parsed_value,model,timestamp,cot_q1_valid,cot_q2_valid,cot_q3_valid,cot_q1,cot_q1_response,cot_q1_parsed,cot_q2,cot_q2_response,cot_q2_parsed,cot_q3,cot_q3_response,cot_q3_parsed
+simulation_0020,A2MC,DS,What is the height of the person in meters?,gravity acc = 9.8m/s^2,ground_truth_prior,gravity acc = 9.8m/s^2,zero-shot,3,1,1.9 m,1.9,gpt-5-2025-08-07,2026-03-05T11:32:08.650507,,,,,,,,,,,,
+simulation_0012,V2MC,DS,What is the width between the two widest eaves of the house in meters?,speed of the bird =6m/s,ground_truth_prior,speed of the bird =6m/s,zero-shot,3,1,3.8 m,3.8,gpt-5-2025-08-07,2026-03-05T11:33:12.686761,,,,,,,,,,,,

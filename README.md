@@ -10,6 +10,12 @@
 <a href="https://quantiphy.stanford.edu/" target="_blank">
     <img alt="Website" src="https://img.shields.io/badge/🌎_Website-QuantiPhy-blue.svg" height="20" />
 </a>
+<a href="https://openaccess.thecvf.com/CVPR2026" target="_blank">
+    <img alt="CVPR 2026" src="https://img.shields.io/badge/CVPR-2026-4b44ce.svg" height="20" />
+</a>
+<a href="https://huggingface.co/datasets/PaulineLi/QuantiPhy" target="_blank">
+    <img alt="HF Dataset: QuantiPhy" src="https://img.shields.io/badge/%F0%9F%A4%97%20_Benchmark-QuantiPhy_test-ffc107?color=ffc107&logoColor=white" height="20" />
+</a>
 <a href="https://huggingface.co/datasets/PaulineLi/QuantiPhy-validation" target="_blank">
     <img alt="HF Dataset: QuantiPhy-validation" src="https://img.shields.io/badge/%F0%9F%A4%97%20_Benchmark-QuantiPhy_validation-ffc107?color=ffc107&logoColor=white" height="20" />
 </a>
@@ -43,8 +49,14 @@
 
 ## Overview
 
-This repository contains the evaluation code for the **QuantiPhy** benchmark. It calculates the Multi-Region Accuracy (MRA) metric for quantitative physical reasoning tasks. The evaluation script processes model output CSV files, compares the predicted values against ground truth, and computes MRA scores across different difficulty levels (theta thresholds) and categories (S2, D2, S3, D3).
+This repository contains the evaluation code for the **QuantiPhy** benchmark, as well as an example script for running VLMs on QuantiPhy. It calculates the Multi-Region Accuracy (MRA) metric for quantitative physical reasoning tasks. The evaluation script processes model output CSV files, compares the predicted values against ground truth, and computes MRA scores across different difficulty levels (theta thresholds) and categories (S2, D2, S3, D3).
 
+## Datasets
+
+| Split | Link | Description |
+|-------|------|-------------|
+| **Test set** (3,373 QA pairs, 556 videos) | [PaulineLi/QuantiPhy](https://huggingface.co/datasets/PaulineLi/QuantiPhy) | Official test set — ground-truth answers withheld |
+| **Validation set** (159 QA pairs) | [PaulineLi/QuantiPhy-validation](https://huggingface.co/datasets/PaulineLi/QuantiPhy-validation) | Validation split with ground-truth answers for development and ablation |
 
 ## Directory Structure
 
@@ -58,10 +70,47 @@ QuantiPhy/
 │   ├── model_A.csv
 │   └── model_B.csv
 │   └── ...
-└── mra_results/              # Directory where results will be saved
+├── mra_results/              # Directory where results will be saved
+└── model_run_example/        # Example script for running a VLM on QuantiPhy
+    ├── run_API_results.py    # Main VLM inference script (OpenAI API)
+    ├── GT_CIB_Ready/         # Example ground truth CSV
+    ├── data/all_480p/        # Example videos (.mp4)
+    └── vlm_results_release/  # Output directory for model predictions
 ```
 
-## Use case 1: Evaluation on QuantiPhy-validation
+## Use case 1: Running a VLM on QuantiPhy
+
+`model_run_example/run_API_results.py` is a ready-to-use inference script that queries an OpenAI-compatible VLM (GPT-5 / GPT-5.1) for each video–question pair and writes the predictions to a CSV that can be fed directly into the evaluator.
+
+### Setup
+
+```bash
+pip install opencv-python pandas numpy openai
+export OPENAI_API_KEY="sk-xxxxxxxxxxxxxxxx"
+```
+
+### Download data
+
+1. Download videos and the metadata CSV from the HuggingFace dataset page:
+   - **Validation set** (with ground truth): [PaulineLi/QuantiPhy-validation](https://huggingface.co/datasets/PaulineLi/QuantiPhy-validation)
+   - **Full test set**: [PaulineLi/QuantiPhy](https://huggingface.co/datasets/PaulineLi/QuantiPhy)
+2. Place the videos in `model_run_example/data/all_480p/` and update the `VIDEO_DIR` and `CSV_FILE` variables at the top of `run_API_results.py` if needed.
+
+### Run
+
+```bash
+cd model_run_example
+python run_API_results.py
+```
+
+The script will prompt you to select:
+- **Prompting method**: `1` Zero-shot &nbsp;|&nbsp; `2` Chain-of-Thought (CoT)
+- **Zero-shot version** (if applicable): `1` No video &nbsp;|&nbsp; `2` Counterfactual prior &nbsp;|&nbsp; `3` Original *(recommended)*
+- **Provider**: press Enter for the default (`gpt5`), or enter `gpt5.1`
+
+Results are saved to `model_run_example/vlm_results_release/tables/` as a timestamped CSV, which you can pass directly to the evaluator.
+
+## Use case 2: Evaluation on QuantiPhy-validation
 
 1. **Obtain Data**: Follow the instructions on our [HuggingFace page](https://huggingface.co/datasets/PaulineLi/QuantiPhy-validation) to download the necessary data needed for evaluating on QuantiPhy-validation:
    * `validation_videos`: The folder contains videos in the validation set.
@@ -109,10 +158,10 @@ The evaluation results are saved in `mra_results/all_model_results.csv`. This CS
 If you find this work useful in your research or project, please cite:
 
 ```bibtex
-@article{li2025quantiphy,
-      title   = {QuantiPhy: A Quantitative Benchmark Evaluating Physical Reasoning Abilities of Vision-Language Models},
-      author  = {Li, Puyin and Xiang, Tiange and Mao, Ella and Wei, Shirley and Chen, Xinye and Masood, Adnan and Li, Fei-Fei and Adeli, Ehsan},
-      journal = {arXiv preprint arXiv:2512.19526},
-      year    = {2025}
+@inproceedings{li2026quantiphy,
+      title     = {QuantiPhy: A Quantitative Benchmark Evaluating Physical Reasoning Abilities of Vision-Language Models},
+      author    = {Li, Puyin and Xiang, Tiange and Mao, Ella and Wei, Shirley and Chen, Xinye and Masood, Adnan and Li, Fei-Fei and Adeli, Ehsan},
+      booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+      year      = {2026}
     }
 ```
