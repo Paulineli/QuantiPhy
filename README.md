@@ -72,7 +72,7 @@ This repository contains the evaluation code for the **QuantiPhy** benchmark, as
 
 | Split | Link | Description |
 |-------|------|-------------|
-| **QuantiPhy dataset** (3,373 QA pairs, 556 videos) | [PaulineLi/QuantiPhy](https://huggingface.co/datasets/PaulineLi/QuantiPhy) | Official full dataset — ground-truth answers withheld |
+| **QuantiPhy dataset** (3,289 QA pairs, 568 videos) | [PaulineLi/QuantiPhy](https://huggingface.co/datasets/PaulineLi/QuantiPhy) | Official full dataset — ground-truth answers withheld |
 | **Validation set** (159 QA pairs) | [PaulineLi/QuantiPhy-validation](https://huggingface.co/datasets/PaulineLi/QuantiPhy-validation) | Validation split with ground-truth answers for development and ablation |
 
 ## Directory Structure
