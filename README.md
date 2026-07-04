@@ -12,6 +12,9 @@
 <a href="https://quantiphy.stanford.edu/" target="_blank">
     <img alt="Website" src="https://img.shields.io/badge/🌎_Website-QuantiPhy-blue.svg" height="20" />
 </a>
+<a href="https://quantiphy.stanford.edu/competition/index.html" target="_blank">
+    <img alt="NeurIPS 2026 Competition" src="https://img.shields.io/badge/🏆_Challenge-NeurIPS_2026-8A2BE2.svg" height="20" />
+</a>
 <a href="https://huggingface.co/datasets/PaulineLi/QuantiPhy" target="_blank">
     <img alt="HF Dataset: QuantiPhy" src="https://img.shields.io/badge/%F0%9F%A4%97%20_Benchmark-QuantiPhy-ffc107?color=ffc107&logoColor=white" height="20" />
 </a>
@@ -47,6 +50,19 @@
 <p align="justify"><i>On a crowded city street, a bird's nest falls from a branch, a car rushes by, an eagle flits over a building, and a person walks in a crosswalk — the real world is full of complex physical motion. To enable AI to understand and navigate this environment, it is essential for generalist embodied systems to reason about physical properties quantitatively. Because objects obey common laws of physics, their kinematic properties (such as size, velocity, and acceleration) are interrelated. This interdependence makes it possible for visual AI to systematically reason about these properties with respect to available priors. In this work, we present \textsc{QuantiPhy}, the first benchmark to evaluate the reasoning ability of AI models on quantitative kinematic inference tasks.</i></p>
 
 </div>
+
+## 🏆 QuantiPhy Challenge @ NeurIPS 2026
+
+**QuantiPhy has been accepted to the [NeurIPS 2026 Competition Track](https://quantiphy.stanford.edu/competition/index.html)!** The challenge is now **live** — you can submit your model's predictions through the official evaluation portal and get scored on the leaderboard.
+
+- **Competition website:** https://quantiphy.stanford.edu/competition/index.html
+- **Submission deadline:** November 5, 2026, 23:59 AOE
+- **How to submit:** Register a team (up to 5 members), run your model on the [test set](https://huggingface.co/datasets/PaulineLi/QuantiPhy), format predictions as a single CSV matching the reference submission template, and upload it through the submission portal (up to 3 scored submissions per day).
+- **Tracks:** *Track A (Main)* — any model permitted, ranked by raw numerical accuracy. *Track B (Open-Weight)* — restricted to publicly available model weights and tools for reproducibility.
+- **Metric:** Mean Relative Accuracy (MRA), computed with the code in this repo (see below).
+- **Prizes (per track):** 1st — \$1,000 + oral · 2nd — \$500 + spotlight · 3rd — \$250 + poster.
+
+Use the starter code in this repository to run a VLM on QuantiPhy and validate your submission format locally before uploading.
 
 ## Overview
 
