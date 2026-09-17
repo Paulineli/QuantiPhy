@@ -60,7 +60,7 @@
 - **How to submit:** Register a team (up to 5 members), run your model on the [test set](https://huggingface.co/datasets/PaulineLi/QuantiPhy), format predictions as a single CSV matching the reference submission template, and upload it through the submission portal (up to 3 scored submissions per day).
 - **Tracks:** *Track A (Main)* — any model permitted, ranked by raw numerical accuracy. *Track B (Open-Weight)* — restricted to publicly available model weights and tools for reproducibility.
 - **Metric:** Mean Relative Accuracy (MRA), computed with the code in this repo (see below).
-- **Prizes (per track):** 1st — \$1,000 + oral · 2nd — \$500 + spotlight · 3rd — \$250 + poster.
+- **Prizes (per track):** 1st — \$1,000 · 2nd — \$500 · 3rd — \$250.
 
 Use the starter code in this repository to run a VLM on QuantiPhy and validate your submission format locally before uploading.
 
