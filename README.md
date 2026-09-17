@@ -56,7 +56,7 @@
 **QuantiPhy has been accepted to the [NeurIPS 2026 Competition Track](https://quantiphy.stanford.edu/competition/index.html)!** The challenge is now **live** — you can submit your model's predictions through the official evaluation portal and get scored on the leaderboard.
 
 - **Competition website:** https://quantiphy.stanford.edu/competition/index.html
-- **Submission deadline:** November 5, 2026, 23:59 AOE
+- **Submission deadline:** October 23, 2026, 23:59 AoE
 - **How to submit:** Register a team (up to 5 members), run your model on the [test set](https://huggingface.co/datasets/PaulineLi/QuantiPhy), format predictions as a single CSV matching the reference submission template, and upload it through the submission portal (up to 3 scored submissions per day).
 - **Tracks:** *Track A (Main)* — any model permitted, ranked by raw numerical accuracy. *Track B (Open-Weight)* — restricted to publicly available model weights and tools for reproducibility.
 - **Metric:** Mean Relative Accuracy (MRA), computed with the code in this repo (see below).
