@@ -65,7 +65,8 @@ if gt_file and os.path.exists(gt_file):
     gt_mapping = dict(zip(gt_df[first_col], gt_posterior_numeric))
     print(f"  ✓ Loaded {len(gt_mapping)} ground truth entries\n")
 elif gt_file:
-    print(f"Warning: GT file '{gt_file}' not found. Using ground_truth_posterior from input files.\n")
+    sys.exit(f"Error: GT file '{gt_file}' not found. Pass --gt_file pointing to quantiphy_validation.csv "
+             f"(shipped in this repo) or to validation_dataset.csv from PaulineLi/QuantiPhy-validation on the Hub.")
 
 csv_files = glob.glob(os.path.join(input_dir, '*.csv'))
 
@@ -93,7 +94,7 @@ for input_file in csv_files:
     
     # Change last digit of video_type to 'X' if video_source is 'segmentation'
     if 'video_source' in df.columns:
-        mask = df['video_source'] == 'segmentation'
+        mask = df['video_source'].isin(['segmentation', 'segmentaion'])  # also accept the misspelling present in older released CSVs
         df.loc[mask, 'video_type'] = df.loc[mask, 'video_type'].apply(
             lambda x: x[:-1] + 'X' if pd.notna(x) and len(x) > 0 else x
         )
