@@ -411,10 +411,6 @@ distance_person_right_camera=1.2305m",66.68,107.0
 t=0.6s, distance_book_camera=1.1510m
 distance_person_left_camera=1.2750m
 distance_person_right_camera=1.2305m",1086.09,-980.0
-2607,captured_0027s,lab,S3SS,24,SS,What is the shoulder breadth of the person in cm?,diameter of the red ball = 7cm,"t=0.2s, distance_book_camera=1.0995m
-t=0.6s, distance_book_camera=1.1510m
-distance_person_left_camera=1.2750m
-distance_person_right_camera=1.2305m",47.39,48.0
 2714,captured_0034as,lab,S3MS,24,SD,What is the velocity of the left tennis ball at 1.2s in cm/s?,diameter of the tennis ball = 6.7cm,"t=1.2s, distance_right_tennis_ball_camera = 0.7760m
 t=1.2s, distance_left_ping_pong_ball_camera = 0.7060m
 distance_pencil_bag_camera = 1.0500m
